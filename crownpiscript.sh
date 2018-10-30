@@ -6,8 +6,8 @@ echo Please change device password...
 passwd
 
 # Software install
-echo Installing software...
 install_dependencies() {
+    echo Installing software...
     sudo apt-get install ufw -y
     sudo apt-get install unzip -y
     sudo apt-get install nano -y
@@ -15,8 +15,8 @@ install_dependencies() {
 }
 
 # Attempt to create 1GB swap ram
-echo Creating swap ram...
 create_swap() {
+    echo Creating swap ram...
     sudo mkdir -p /var/cache/swap/   
     sudo dd if=/dev/zero of=/var/cache/swap/myswap bs=1M count=1024
     sudo chmod 600 /var/cache/swap/myswap
@@ -29,8 +29,8 @@ create_swap() {
 }
 
 # Update OS
-echo Updateing OS, please wait...
 update_repos() {
+    echo Updateing OS, please wait...
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" update
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade
 }
@@ -52,6 +52,7 @@ download_package() {
 
 # Install Crown client
 install_package() {
+    echo Installing Crown client...
     sudo unzip -d $dir/crown $dir/crown.zip
     sudo cp -f $dir/crown/*/bin/* /usr/local/bin/
     sudo cp -f $dir/crown/*/lib/* /usr/local/lib/
@@ -59,8 +60,8 @@ install_package() {
 }
 
 # Firewall
-echo Setting up firewall
 configure_firewall() {
+    echo Setting up firewall
     sudo ufw allow ssh/tcp
     sudo ufw limit ssh/tcp
     sudo ufw allow 9340/tcp
@@ -102,12 +103,12 @@ handle_arguments "$@"
 main
 
 # Crontab additions 
-echo Adding to Crontab...
+    echo Adding to Crontab...
     (crontab -l 2>/dev/null; echo "@reboot sudo /usr/local/bin/crownd") | crontab -
     (crontab -l 2>/dev/null; echo "*/30 * * * * restart.sh") | crontab -
 
 # Maintenance scripts
-echo Downloading scripts and other useful tools, please wait...
+    echo Downloading scripts and other useful tools, please wait...
     sudo wget "https://www.dropbox.com/s/kucyc0fupop6vca/crwrestart.sh?dl=0" -O restart.sh | bash && sudo chmod +x restart.sh
     sudo wget "https://www.dropbox.com/s/hbb7516orhf7saq/update.sh?dl=0" -O update.sh | bash && sudo chmod +x update.sh
     sudo wget "https://www.dropbox.com/s/gq4vxog7riom739/whatsmyip.sh?dl=0" -O whatsmyip.sh | bash && sudo chmod +x whatsmyip.sh
@@ -144,8 +145,8 @@ if [ $choice -eq 1 ] ; then
 	sleep 5
 	sudo ls -a /etc/openvpn/nordvpn
 	echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
-	echo Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
-	echo Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
+	echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
+	echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
         
 
 else                   
@@ -179,4 +180,4 @@ done
 
 
 # Notes
-echo -note- Please continue with the guide...
+echo Please continue with the guide...
