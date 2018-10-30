@@ -64,7 +64,7 @@ sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscr
 
 ## NordVPN Setup
 
-Qucik guide to using NordVPN with CrownPI
+Quick guide to using NordVPN with CrownPI
 
 1. The script will ask you to enter your VPN account details, have these ready to make installation easy.
 2. The command to change your NordVPN login details
