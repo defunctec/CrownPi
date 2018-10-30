@@ -41,7 +41,8 @@ masternode=1
 masternodeprivkey=YOURMASTERNODEGENKEY
 ```
 10. Start the Crown Client
-```sudo crownd
+```sh
+sudo crownd
 ```
 11. Goto your wallet, where the collateral is held.
 	 Edit the node you would like to host.
@@ -49,8 +50,10 @@ masternodeprivkey=YOURMASTERNODEGENKEY
 	 The node will remain online or drop off. If it drops try "start missing" one more time.
 12. Back to the CrownPi
 	 Check the masternode is synced with the CrownPi by typing
-```sudo crown-cli masternode status
+```sh
+sudo crown-cli masternode status
 ```
+
 ## Usage
 
 Raspberry Pi - Raspian Stretch Lite:
@@ -60,6 +63,7 @@ sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscr
 ```
 
 ## NordVPN Setup
+
 Qucik guide to using NordVPN with CrownPI
 
 1. The script will ask you to enter your VPN account details, have these ready to make installation easy.
