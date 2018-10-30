@@ -107,7 +107,7 @@ sudo /etc/init.d/openvpn restart
 
 
 ## VPNArea
-Qucik guide to using VPNArea with CrownPI
+Quick guide to using VPNArea with CrownPI
 
 1. VPNArea installation is very simple as the script takes care of most of the work.
 2. When promted, choose which location you would like to use as VPN server
