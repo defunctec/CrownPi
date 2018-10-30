@@ -5,13 +5,16 @@
 echo Please change device password...
 passwd
 
+# Software install
 echo Installing software...
 install_dependencies() {
     sudo apt-get install ufw -y
     sudo apt-get install unzip -y
     sudo apt-get install nano -y
+    sudo apt-get install p7zip -y
 }
 
+# Attempt to create 1GB swap ram
 echo Creating swap ram...
 create_swap() {
     sudo mkdir -p /var/cache/swap/   
@@ -25,14 +28,14 @@ create_swap() {
     cat /etc/fstab
 }
 
-#Update OS
+# Update OS
 echo Updateing OS, please wait...
 update_repos() {
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" update
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade
 }
 
-
+# Download Crown client (Update link with new client)
 download_package() {
     # Password change prompt
     echo Getting 0.12.5.1 client
@@ -47,6 +50,7 @@ download_package() {
     wget "https://github.com/Crowndev/crown-core/releases/download/v0.12.5.1/Crown-RaspberryPi.zip" -O $dir/crown.zip
 }
 
+# Install Crown client
 install_package() {
     sudo unzip -d $dir/crown $dir/crown.zip
     sudo cp -f $dir/crown/*/bin/* /usr/local/bin/
@@ -54,6 +58,7 @@ install_package() {
     sudo rm -rf $tmp
 }
 
+# Firewall
 echo Setting up firewall
 configure_firewall() {
     sudo ufw allow ssh/tcp
@@ -69,6 +74,7 @@ configure_firewall() {
     sudo ufw --force enable
 }
 
+# Crown package
 main() {
     # Stop crownd (in case it's running)
     sudo crown-cli stop
@@ -95,12 +101,12 @@ main() {
 handle_arguments "$@"
 main
 
-# Crontab
+# Crontab additions 
 echo Adding to Crontab...
     (crontab -l 2>/dev/null; echo "@reboot sudo /usr/local/bin/crownd") | crontab -
-    (crontab -l 2>/dev/null; echo "*/30 * * * * crwrestart.sh") | crontab -
+    (crontab -l 2>/dev/null; echo "*/30 * * * * restart.sh") | crontab -
 
-
+# Maintenance scripts
 echo Downloading scripts and other useful tools, please wait...
     sudo wget "https://www.dropbox.com/s/kucyc0fupop6vca/crwrestart.sh?dl=0" -O restart.sh | bash && sudo chmod +x restart.sh
     sudo wget "https://www.dropbox.com/s/hbb7516orhf7saq/update.sh?dl=0" -O update.sh | bash && sudo chmod +x update.sh
@@ -136,12 +142,10 @@ if [ $choice -eq 1 ] ; then
 	read -p "Press enter to continue"
 	sudo nano /etc/openvpn/auth.txt
 	sleep 5
-	echo Please choose from the list of regions...
-	echo EG - sudo ls -a /etc/openvpn/usservers
+	sudo ls -a /etc/openvpn/nordvpn
+	echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
 	echo Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
 	echo Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
-	sudo ls - /etc/openvpn/nordvpn
-	
         
 
 else                   
@@ -163,10 +167,10 @@ else
                         echo "You have chosen word: Tutorial"
                 else
                         echo "Please make a choice between 1-3 !"
-                        echo "1. Bash"
-                        echo "2. Scripting"
-                        echo "3. Tutorial"
-                        echo -n "Please choose a word [1,2 or 3]? "
+                        echo "1. NordVPN"
+                        echo "2. VPN Area"
+                        echo "3. Example"
+                        echo -n "Please choose a VPN [1,2 or 3]? "
                         choice=4
                 fi   
         fi
