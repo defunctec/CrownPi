@@ -12,6 +12,7 @@ install_dependencies() {
     sudo apt-get install unzip -y
     sudo apt-get install nano -y
     sudo apt-get install p7zip -y
+    sudo apt-get install openvpn -y
 }
 
 # Attempt to create 1GB swap ram
