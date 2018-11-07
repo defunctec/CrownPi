@@ -211,7 +211,12 @@ else
                 if [ $choice -eq 3 ] ; then
                         echo "Skipping VPN setup"
                 else
-
+                        echo "Please make a choice between 1-3 !"
+                        echo "1. NordVPN"
+                        echo "2. VPN Area"
+                        echo "3. Example"
+                        echo -n "Please choose a VPN [1,2 or 3]? "
+                        choice=4
                 fi   
         fi
 fi
