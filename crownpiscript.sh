@@ -12,7 +12,6 @@ install_dependencies() {
     sudo apt-get install unzip -y
     sudo apt-get install nano -y
     sudo apt-get install p7zip -y
-    sudo apt-get install openvpn -y
 }
 
 # Attempt to create 1GB swap ram
@@ -178,10 +177,11 @@ read choice
 # bash nested if/else
 if [ $choice -eq 1 ] ; then
  
-        echo "You have chosen NordVPN"
-        wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
-        sudo p7zip -d nordvpn.7z
+    echo "You have chosen NordVPN"
+    wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
+    sudo p7zip -d nordvpn.7z
     sudo mv openvpn /etc
+    sudo apt-get install openvpn -y
     sudo chmod 755 /etc/openvpn
     echo Please enter your NordVPN username and password, with the username at the top and password below the username.
     read -p "Press enter to continue"
