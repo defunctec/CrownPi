@@ -143,8 +143,7 @@ if [ $choice -eq 1 ] ; then
 else                   
 
         if [ $choice -eq 2 ] ; then
-                 echo "Skip Zabbix agent installation"
-                 done           
+                 echo "Skip Zabbix agent installation"           
                  
         else
          
