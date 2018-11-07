@@ -115,7 +115,51 @@ main
     sudo wget "https://www.dropbox.com/s/gq4vxog7riom739/whatsmyip.sh?dl=0" -O whatsmyip.sh | bash && sudo chmod +x whatsmyip.sh
 
 
+# Declare variable choice and assign value 4
+echo Would you like to install a Zabbix agent?
+choice=3
+# Print to stdout
+ echo "1. Yes"
+ echo "2. No"
+ echo -n "1 for Yes 2 for No [1 or 2]? "
+# Loop while the variable choice is equal 4
+# bash while loop
+while [ $choice -eq 3 ]; do
+ 
+# read user input
+read choice
+# bash nested if/else
+if [ $choice -eq 1 ] ; then
+ 
+        echo "You have chosen to install a Zabbix agent"
+        wget http://repo.zabbix.com/zabbix/3.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.4-1+trusty_all.deb
+        dpkg -i zabbix-release_3.4-1+trusty_all.deb
+        sudo apt-get update -y
+        sudo apt-get install zabbix-agent -y
+        echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
+        echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspbery1
+        
 
+else                   
+
+        if [ $choice -eq 2 ] ; then
+                 echo "Skip Zabbix agent installation"
+                 done           
+                 
+        else
+         
+                if [ $choice -eq 3 ] ; then
+                        echo "Would you like to install Zabbix agent?"
+                else
+                        echo "Please make a choice between Yes or No !"
+                        echo "1. Yes"
+                        echo "2. No"
+                        echo -n "1 for Yes 2 for No [1 or 2]? "
+                        choice=3
+                fi   
+        fi
+fi
+done
 
 
 # Declare variable choice and assign value 4
@@ -138,31 +182,31 @@ if [ $choice -eq 1 ] ; then
         echo "You have chosen NordVPN"
         wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
         sudo p7zip -d nordvpn.7z
-	sudo mv openvpn /etc
-	sudo chmod 755 /etc/openvpn
-	echo Please enter your NordVPN username and password, with the username at the top and password below the username.
-	read -p "Press enter to continue"
-	sudo nano /etc/openvpn/auth.txt
-	sleep 5
-	sudo ls -a /etc/openvpn/nordvpn
-	echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
-	echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
-	echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
+    sudo mv openvpn /etc
+    sudo chmod 755 /etc/openvpn
+    echo Please enter your NordVPN username and password, with the username at the top and password below the username.
+    read -p "Press enter to continue"
+    sudo nano /etc/openvpn/auth.txt
+    sleep 5
+    sudo ls -a /etc/openvpn/nordvpn
+    echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
+    echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
+    echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
         
 
 else                   
 
         if [ $choice -eq 2 ] ; then
                  echo "You have chosen VPN Area"
-		 sudo apt-get install openvpn-systemd-resolved -y
-		 sudo wget "https://www.dropbox.com/s/m4gxzf0iazri1ht/vpnareainstall.pl?dl=0" -O vpnarea.sh | bash
+         sudo apt-get install openvpn-systemd-resolved -y
+         sudo wget "https://www.dropbox.com/s/m4gxzf0iazri1ht/vpnareainstall.pl?dl=0" -O vpnarea.sh | bash
                  sudo chmod 755 vpnarea.sh
-		 sudo mkdir /etc/openvpn
-		 sudo chmod 755 /etc/openvpn
-		 sudo mkdir /etc/openvpn/update-resolv-conf
-	 	 sudo chmod 755 /etc/openvpn/update-resolv-conf
-		 sudo ./vpnarea.sh
-		 sudo mv .vpnarea-config /etc/openvpn
+         sudo mkdir /etc/openvpn
+         sudo chmod 755 /etc/openvpn
+         sudo mkdir /etc/openvpn/update-resolv-conf
+         sudo chmod 755 /etc/openvpn/update-resolv-conf
+         sudo ./vpnarea.sh
+         sudo mv .vpnarea-config /etc/openvpn
         else
          
                 if [ $choice -eq 3 ] ; then
