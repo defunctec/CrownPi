@@ -6,10 +6,7 @@
 ## Installation Guide
 
 1. You must have a new copy of "Raspian Stretch Lite" installed on a 16GB SD Card using win32DiskImager for example.
-2. This script must be run from user Root
-```sh
-sudo su
-```
+2. This script can be run from user or root.
 3. Enable SSH connections and expand the file system using
 ```sh
 sudo raspi-config
