@@ -132,8 +132,8 @@ read choice
 if [ $choice -eq 1 ] ; then
  
         echo "You have chosen to install a Zabbix agent"
-        wget http://repo.zabbix.com/zabbix/3.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.4-1+trusty_all.deb
-        dpkg -i zabbix-release_3.4-1+trusty_all.deb
+        wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
+        dpkg -i zabbix-release_3.4-1+stretch_all.deb
         sudo apt-get update -y
         sudo apt-get install zabbix-agent -y
         echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
