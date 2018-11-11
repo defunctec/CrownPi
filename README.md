@@ -83,20 +83,11 @@ sudo ls -a /etc/openvpn/nordvpn/usservers
 ```sh
 sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
 ```
-6. Now enter the new nordvpn.conf file you made
+6. Now edit the new nordvpn.conf file you made
 ```sh
-sudo nano /etc/openvpn/nordvpn.conf
+sudo sed -i -e 's/auth-user-pass/auth-user-pass auth.txt/g' /etc/openvpn/nordvpn.conf
 ```
-7. Change the line 
-```sh
-auth-user-pass
-``` 
-	to 
-```sh
-auth-user-pass auth.txt
-```
-8 -
-	Now check the IP has changed using
+7. Restart openvpn and check the IP is correct.
 ```sh
 sudo /etc/init.d/openvpn restart
 ```
