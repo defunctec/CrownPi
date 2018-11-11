@@ -79,7 +79,7 @@ sudo ls -a /etc/openvpn/nordvpn
 ```sh
 sudo ls -a /etc/openvpn/nordvpn/usservers
 ```
-5. This is an example of how to correctly chose a server from a region
+5. This is an example of how to correctly choose a server from a region
 ```sh
 sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
 ```
