@@ -223,6 +223,7 @@ else
 fi
 done
 
+sudo crownd
 
 # Notes
 echo Please continue with the guide...
