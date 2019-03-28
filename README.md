@@ -1,7 +1,19 @@
-# CrownPi
+# CrownPi - (MNPoS 0.13.0)
 > Local Masternode hosting for the Crown(CRW) community.
 
 ![](http://i63.tinypic.com/vxke4x.png)
+
+## Introduction
+Hosting from home is risky as your IP address is made public. CrownPi will help you host from home safely using OpenVPN.
+You must have a NordVPN or AreaVPN account to use CrownPi.
+
+## Usage
+
+Raspberry Pi - Raspian Stretch Lite:
+
+```sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
+```
 
 ## Installation Guide
 
@@ -23,22 +35,11 @@ ifconfig
 ```sh
 sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
-7. The script will first ask you to change the password of the device, this is wise for security. Installation is mostly automated but does require manual input in parts.
+7. Installation is mostly automated but does require manual input at the end.
 8. Once the script has installed the Crown client and setup the backend the script will ask you which VPN provider you use, NordVPN or VPNArea, please choose and follow the instructions.
-9. Now your VPN is setup you can setup a Crown Masternode or Systemnode
+9. Now the VPN is setup, use the crown.conf to enter VPN IP, genkey ect.
 ```sh
 sudo nano /root/.crown/crown.conf
-```
-Enter -   
-```sh
-daemon=1
-rpcuser=MAKE-NEW-USER
-rpcpassword=MAKE-NEW-PASSWORD
-listen=1
-server=1
-externalip=ENTERVPNIPADDRESS
-masternode=1
-masternodeprivkey=YOURMASTERNODEGENKEY
 ```
 10. Start the Crown Client
 ```sh
@@ -52,14 +53,6 @@ sudo crownd
 	 Check the masternode is synced with the CrownPi by typing
 ```sh
 sudo crown-cli masternode status
-```
-
-## Usage
-
-Raspberry Pi - Raspian Stretch Lite:
-
-```sh
-sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
 
 ## NordVPN Setup
@@ -96,6 +89,13 @@ sudo /etc/init.d/openvpn restart
 ./whatsmyip.sh
 ```
 
+## Update CrownPi
+
+This will update your Crown client.
+
+```sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Update/master/crownpiscript.sh" -O update.sh | bash && sudo chmod +x update.sh && sudo ./update.sh
+``` 
 
 ## VPNArea
 Quick guide to using VPNArea with CrownPI
@@ -107,4 +107,3 @@ Quick guide to using VPNArea with CrownPI
 ## About Crown
 
 HomePage - https://Crown.tech
-Chat - https://mm.crownlab.eu
