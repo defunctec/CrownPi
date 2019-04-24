@@ -4,6 +4,10 @@
 ![](http://i63.tinypic.com/vxke4x.png)
 
 ## Introduction
+
+CROWNPI IS NO LONGER RECOMMENDED AS IT DOESN'T PROVIDE INCOMING CONNECTIONS
+
+
 Hosting from home is risky as your IP address is made public. CrownPi will help you host from home safely using OpenVPN.
 You must have a NordVPN or AreaVPN account to use CrownPi.
 
