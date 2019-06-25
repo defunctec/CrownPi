@@ -49,7 +49,7 @@ download_package() {
         mkdir -p $dir
     fi
     # Change this later to take latest release version.
-    sudo wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/5912/artifacts/download" -O $dir/crown.zip
+    sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O $dir/crown.zip
 }
 
 # Install Crown client
@@ -224,8 +224,8 @@ configure_conf() {
     echo 'listen=1' | sudo tee -a /root/.crown/crown.conf 
     echo 'server=1' | sudo tee -a /root/.crown/crown.conf 
     echo 'externalip='$IP | sudo tee -a /root/.crown/crown.conf
-    echo 'masternode=1' | sudo tee -a /root/.crown/crown.conf
-    echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
+    echo 'systemnode=1' | sudo tee -a /root/.crown/crown.conf
+    echo 'systemnodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
     sudo cat /root/.crown/crown.conf
 }
 
