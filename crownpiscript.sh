@@ -40,7 +40,7 @@ update_repos() {
 # Download Crown client (Update link with new client)
 download_package() {
     # Password change prompt
-    echo Getting 0.13.2 MN-PoS client...
+    echo Getting 0.13.4 MN-PoS client...
     # Create temporary directory
     dir=`mktemp -d`
     if [ -z "$dir" ]; then
