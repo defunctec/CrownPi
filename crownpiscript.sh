@@ -84,7 +84,7 @@
     echo
 # Maintenance scripts
     echo Downloading watchdog script...
-    sudo curl -o /usr/local/bin/crown-server-install.sh https://raw.githubusercontent.com/Crowndev/crowncoin/master/scripts/crown-server-install.sh
+    sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/blob/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
     echo Would you like to download the bootstrap?
     choice=3
@@ -95,7 +95,7 @@
     read choice
     if [ $choice -eq 1 ] ; then
     echo Downloading bootstrap
-    sudo crown-server-install.sh -c -b
+    sudo crown-server-install.sh -b
     else                   
         if [ $choice -eq 2 ] ; then
                  echo "Skip bootstrap" 
@@ -114,6 +114,12 @@
     echo "Done"
     echo
     done
+# Install Crown client
+    echo "Installing Crown client..."
+    sudo unzip -d $dir/crown $dir/crown.zip
+    sudo cp -f $dir/crown/*/bin/* /usr/local/bin/
+    sudo cp -f $dir/crown/*/lib/* /usr/local/lib/
+    sudo rm -rf $tmp
 # Firewall
     echo Setting up firewall...
     sudo ufw allow ssh/tcp
@@ -333,7 +339,7 @@
     fi
 # Maintenance scripts
     echo Downloading watchdog script...
-    sudo curl -o /usr/local/bin/crown-server-install.sh https://raw.githubusercontent.com/Crowndev/crowncoin/master/scripts/crown-server-install.sh
+    sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/blob/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
     echo Would you like to download the Crown bootstrap?
     choice=3
