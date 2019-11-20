@@ -86,7 +86,6 @@
     echo Downloading watchdog script...
     sudo curl -o /usr/local/bin/crown-server-install.sh https://raw.githubusercontent.com/Crowndev/crowncoin/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
-    sudo crown-server-install.sh -w 1
     echo Would you like to download the bootstrap?
     choice=3
     echo "1. Yes"
