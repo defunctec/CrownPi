@@ -40,7 +40,7 @@ create_swap() {
     echo "The updated /etc/fstab looks like this:"
     cat /etc/fstab
     echo
-    echo "==============================================================================="
+    echo "Done"
     fi
 }
 
@@ -52,39 +52,7 @@ update_repos() {
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade >/dev/null 2>&1
     sudo apt autoremove -y >/dev/null 2>&1
     echo
-    echo "==============================================================================="
-}
-
-# Download Crown client (Update link with new client)
-download_package() {
-    # Password change prompt
-    echo Getting 0.13.4 MN-PoS client...
-    # Create temporary directory
-    dir=`mktemp -d`
-    if [ -z "$dir" ]; then
-        # Create directory under $HOME if above operation failed
-        dir=$HOME/crown-temp
-        mkdir -p $dir
-    fi
-    # Change this later to take latest release version.
-    sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O $dir/crown.zip
-}
-
-# Install Crown client
-install_package() {
-    echo Installing Crown client...
-    sudo unzip -d $dir/crown $dir/crown.zip
-    sudo cp -f $dir/crown/*/bin/* /usr/local/bin/
-    sudo cp -f $dir/crown/*/lib/* /usr/local/lib/
-    sudo rm -rf $tmp
-}
-
-# Firewall
-configure_firewall() {
-    echo Setting up firewall...
-    sudo ufw allow ssh/tcp
-    sudo ufw limit ssh/tcp
-    sudo ufw allow 9340/tcp
+    echo "Done"
 }
 
 # Maintenance scripts
@@ -119,6 +87,38 @@ maintenance_scripts() {
         fi
     fi
     done
+}
+
+# Download Crown client (Update link with new client)
+download_package() {
+    # Password change prompt
+    echo Getting 0.13.4 MN-PoS client...
+    # Create temporary directory
+    dir=`mktemp -d`
+    if [ -z "$dir" ]; then
+        # Create directory under $HOME if above operation failed
+        dir=$HOME/crown-temp
+        mkdir -p $dir
+    fi
+    # Change this later to take latest release version.
+    sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O $dir/crown.zip
+}
+
+# Install Crown client
+install_package() {
+    echo Installing Crown client...
+    sudo unzip -d $dir/crown $dir/crown.zip
+    sudo cp -f $dir/crown/*/bin/* /usr/local/bin/
+    sudo cp -f $dir/crown/*/lib/* /usr/local/lib/
+    sudo rm -rf $tmp
+}
+
+# Firewall
+configure_firewall() {
+    echo Setting up firewall...
+    sudo ufw allow ssh/tcp
+    sudo ufw limit ssh/tcp
+    sudo ufw allow 9340/tcp
 }
 
 # Zabbix Install
