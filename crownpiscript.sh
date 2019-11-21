@@ -51,7 +51,7 @@
     sudo crown-server-install.sh -w 1
     else
 # Install A2        
-        if [ $choice -eq 2 ] ; then
+    if [ $choice -eq 2 ] ; then
 # Stop Crown client
     sudo crown-cli stop
 # Software install
@@ -110,22 +110,22 @@
     sudo crown-server-install.sh -c -m
     else
 # Boot A2
-        if [ $choice -eq 2 ] ; then
-                 echo "Skip bootstrap"
-                 sudo crown-server-install.sh -c -m
+    if [ $choice -eq 2 ] ; then
+    echo "Skip bootstrap"
+    sudo crown-server-install.sh -c -m
     else
 # Boot A3
-        if [ $choice -eq 3 ] ; then
-            echo "Would you like to download the bootstrap?"
-                else
-                    echo "Please make a choice between Yes or No !"
-                    echo "1. Yes"
-                    echo "2. No"
-                    echo -n "1 for Yes 2 for No [1 or 2]? "
-                    choice=3
-        fi
-        fi
-        fi
+    if [ $choice -eq 3 ] ; then
+    echo "Would you like to download the bootstrap?"
+    else
+    echo "Please make a choice between Yes or No !"
+    echo "1. Yes"
+    echo "2. No"
+    echo -n "1 for Yes 2 for No [1 or 2]? "
+    choice=3
+    fi
+    fi
+    fi
     echo "Done"
     done
 # Firewall
@@ -149,27 +149,27 @@
     read choice
 # bash nested if/else
     if [ $choice -eq 1 ] ; then 
-        echo "You have chosen to install a Zabbix agent"
-        sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
-        sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
-        sudo apt-get update -y
-        sudo apt-get install zabbix-agent -y
-        echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
-        echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspbery1
+    echo "You have chosen to install a Zabbix agent"
+    sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
+    sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
+    sudo apt-get update -y
+    sudo apt-get install zabbix-agent -y
+    echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
+    echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspbery1
     else                   
-        if [ $choice -eq 2 ] ; then
-            echo "Skip Zabbix agent installation"    
+    if [ $choice -eq 2 ] ; then
+    echo "Skip Zabbix agent installation"    
     else
-        if [ $choice -eq 3 ] ; then
-            echo "Would you like to install Zabbix agent?"
-                else
-                    echo "Please make a choice between Yes or No !"
-                    echo "1. Yes"
-                    echo "2. No"
-                    echo -n "1 for Yes 2 for No [1 or 2]? "
-                    choice=3
-        fi
-        fi
+    if [ $choice -eq 3 ] ; then
+    echo "Would you like to install Zabbix agent?"
+    else
+    echo "Please make a choice between Yes or No !"
+    echo "1. Yes"
+    echo "2. No"
+    echo -n "1 for Yes 2 for No [1 or 2]? "
+    choice=3
+    fi
+    fi
     fi
     done
 # NordVPN Install
@@ -189,76 +189,76 @@
     read choice
 # bash nested if/else
     if [ $choice -eq 1 ] ; then
-        echo "You have chosen NordVPN"
-        wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
-        sudo p7zip -d nordvpn.7z
-        sudo mv openvpn /etc
-        sudo apt-get install openvpn -y
-        sudo chmod 755 /etc/openvpn
-        sudo ufw allow 1194/udp
-        sudo ufw logging on
-        sudo ufw --force enable
-        echo Please enter your NordVPN username and password, with the username at the top and password below the username.
-        read -p "Press enter to continue"
-        sudo nano /etc/openvpn/auth.txt
-        sleep 2
-        sudo ls -a /etc/openvpn/nordvpn
-        echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
-        echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
-        echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
+    echo "You have chosen NordVPN"
+    wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
+    sudo p7zip -d nordvpn.7z
+    sudo mv openvpn /etc
+    sudo apt-get install openvpn -y
+    sudo chmod 755 /etc/openvpn
+    sudo ufw allow 1194/udp
+    sudo ufw logging on
+    sudo ufw --force enable
+    echo Please enter your NordVPN username and password, with the username at the top and password below the username.
+    read -p "Press enter to continue"
+    sudo nano /etc/openvpn/auth.txt
+    sleep 2
+    sudo ls -a /etc/openvpn/nordvpn
+    echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
+    echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
+    echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
     else
     if [ $choice -eq 2 ] ; then
-        echo "You have chosen VPN Area"
-        sudo ufw allow 53/udp
-        sudo ufw allow 111/udp
-        sudo ufw allow 123/udp
-        sudo ufw allow 443/udp
-        sudo ufw allow 1194/udp
-        sudo ufw allow 8282/udp
-        sudo ufw logging on
-        sudo ufw --force enable        
-        sudo apt-get install openvpn-systemd-resolved -y
-        sudo wget "https://www.dropbox.com/s/m4gxzf0iazri1ht/vpnareainstall.pl?dl=0" -O vpnarea.sh | bash
-        sudo chmod 755 vpnarea.sh
-        sudo mkdir /etc/openvpn
-        sudo chmod 755 /etc/openvpn
-        sudo mkdir /etc/openvpn/update-resolv-conf
-        sudo chmod 755 /etc/openvpn/update-resolv-conf
-        sudo ./vpnarea.sh
-        sudo mv .vpnarea-config /etc/openvpn
-        else
-        if [ $choice -eq 3 ] ; then
-            echo "Skipping VPN setup"
-        else
-            echo "Please make a choice between 1-3 !"
-            echo "1. NordVPN"
-            echo "2. VPN Area"
-            echo "3. Example"
-            echo -n "Please choose a VPN [1,2 or 3]? "
-            choice=4
-        fi
+    echo "You have chosen VPN Area"
+    sudo ufw allow 53/udp
+    sudo ufw allow 111/udp
+    sudo ufw allow 123/udp
+    sudo ufw allow 443/udp
+    sudo ufw allow 1194/udp
+    sudo ufw allow 8282/udp
+    sudo ufw logging on
+    sudo ufw --force enable        
+    sudo apt-get install openvpn-systemd-resolved -y
+    sudo wget "https://www.dropbox.com/s/m4gxzf0iazri1ht/vpnareainstall.pl?dl=0" -O vpnarea.sh | bash
+    sudo chmod 755 vpnarea.sh
+    sudo mkdir /etc/openvpn
+    sudo chmod 755 /etc/openvpn
+    sudo mkdir /etc/openvpn/update-resolv-conf
+    sudo chmod 755 /etc/openvpn/update-resolv-conf
+    sudo ./vpnarea.sh
+    sudo mv .vpnarea-config /etc/openvpn
+    else
+    if [ $choice -eq 3 ] ; then
+    echo "Skipping VPN setup"
+    else
+    echo "Please make a choice between 1-3 !"
+    echo "1. NordVPN"
+    echo "2. VPN Area"
+    echo "3. Example"
+    echo -n "Please choose a VPN [1,2 or 3]? "
+    choice=4
+    fi
     fi
     fi
     done
     else
 # Install A close
-        if [ $choice -eq 3 ] ; then
-            echo "Would you like to Update or Install CrownPi?"
-                else
-                    echo "Please make a choice between Update or Install !"
-                    echo "1. Update"
-                    echo "2. Install"
-                    echo -n "1 for Update 2 for Install [1 or 2]? "
-                    choice=3
-        fi
-        fi
+    if [ $choice -eq 3 ] ; then
+    echo "Would you like to Update or Install CrownPi?"
+    else
+    echo "Please make a choice between Update or Install !"
+    echo "1. Update"
+    echo "2. Install"
+    echo -n "1 for Update 2 for Install [1 or 2]? "
+    choice=3
+    fi
+    fi
     fi
 # Notes
     done
 # Install or update RPI =================================================
     else
 # OS 2 B
-        if [ $choice -eq 2 ] ; then
+    if [ $choice -eq 2 ] ; then
 # Update or Install
     echo "Would you like to Update or Install CrownPi?"
 # Install B Open
@@ -288,7 +288,7 @@
     echo
     else
 # Install B2
-        if [ $choice -eq 2 ] ; then
+    if [ $choice -eq 2 ] ; then
 # Install Raspberry Pi
 # Shutdown crownd
     echo "Shutting down crown client"
@@ -346,19 +346,19 @@
     sudo unzip -d $dir/crown $dir/bootstrap.zip
     sudo rm -rf $dir/bootstrap.zip
     else
-        if [ $choice -eq 2 ] ; then
-                 echo "Skip bootstrap" 
+    if [ $choice -eq 2 ] ; then
+    echo "Skip bootstrap" 
     else
-        if [ $choice -eq 3 ] ; then
-            echo "Would you like to download the bootstrap?"
-                else
-                    echo "Please make a choice between Yes or No !"
-                    echo "1. Yes"
-                    echo "2. No"
-                    echo -n "1 for Yes 2 for No [1 or 2]? "
-                    choice=3
-        fi
-        fi
+    if [ $choice -eq 3 ] ; then
+    echo "Would you like to download the bootstrap?"
+    else
+    echo "Please make a choice between Yes or No !"
+    echo "1. Yes"
+    echo "2. No"
+    echo -n "1 for Yes 2 for No [1 or 2]? "
+    choice=3
+    fi
+    fi
     fi
     echo "Done"
     done
@@ -368,9 +368,9 @@
     # Create temporary directory
     dir=`mktemp -d`
     if [ -z "$dir" ]; then
-        # Create directory under $HOME if above operation failed
-        dir=$HOME/crown-temp
-        mkdir -p $dir
+    # Create directory under $HOME if above operation failed
+    dir=$HOME/crown-temp
+    mkdir -p $dir
     fi
     # Change this later to take latest release version.
     sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O $dir/crown.zip
@@ -401,27 +401,27 @@
     read choice
 # bash nested if/else
     if [ $choice -eq 1 ] ; then 
-        echo "You have chosen to install a Zabbix agent"
-        sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
-        sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
-        sudo apt-get update -y
-        sudo apt-get install zabbix-agent -y
-        echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
-        echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspbery1
+    echo "You have chosen to install a Zabbix agent"
+    sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
+    sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
+    sudo apt-get update -y
+    sudo apt-get install zabbix-agent -y
+    echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
+    echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspbery1
     else
-        if [ $choice -eq 2 ] ; then
-            echo "Skip Zabbix agent installation"    
+    if [ $choice -eq 2 ] ; then
+    echo "Skip Zabbix agent installation"    
     else
-        if [ $choice -eq 3 ] ; then
-            echo "Would you like to install Zabbix agent?"
-                else
-                    echo "Please make a choice between Yes or No !"
-                    echo "1. Yes"
-                    echo "2. No"
-                    echo -n "1 for Yes 2 for No [1 or 2]? "
-                    choice=3
-        fi
-        fi
+    if [ $choice -eq 3 ] ; then
+    echo "Would you like to install Zabbix agent?"
+    else
+    echo "Please make a choice between Yes or No !"
+    echo "1. Yes"
+    echo "2. No"
+    echo -n "1 for Yes 2 for No [1 or 2]? "
+    choice=3
+    fi
+    fi
     fi
     done
 # NordVPN Install
@@ -440,54 +440,54 @@
 # read user input
     read choice
     if [ $choice -eq 1 ] ; then
-        echo "You have chosen NordVPN"
-        wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
-        sudo p7zip -d nordvpn.7z
-        sudo mv openvpn /etc
-        sudo apt-get install openvpn -y
-        sudo chmod 755 /etc/openvpn
-        sudo ufw allow 1194/udp
-        sudo ufw logging on
-        sudo ufw --force enable
-        echo Please enter your NordVPN username and password, with the username at the top and password below the username.
-        read -p "Press enter to continue"
-        sudo nano /etc/openvpn/auth.txt
-        sleep 2
-        sudo ls -a /etc/openvpn/nordvpn
-        echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
-        echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
-        echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
+    echo "You have chosen NordVPN"
+    wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
+    sudo p7zip -d nordvpn.7z
+    sudo mv openvpn /etc
+    sudo apt-get install openvpn -y
+    sudo chmod 755 /etc/openvpn
+    sudo ufw allow 1194/udp
+    sudo ufw logging on
+    sudo ufw --force enable
+    echo Please enter your NordVPN username and password, with the username at the top and password below the username.
+    read -p "Press enter to continue"
+    sudo nano /etc/openvpn/auth.txt
+    sleep 2
+    sudo ls -a /etc/openvpn/nordvpn
+    echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
+    echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
+    echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
     else
     if [ $choice -eq 2 ] ; then
-        echo "You have chosen VPN Area"
-        sudo ufw allow 53/udp
-        sudo ufw allow 111/udp
-        sudo ufw allow 123/udp
-        sudo ufw allow 443/udp
-        sudo ufw allow 1194/udp
-        sudo ufw allow 8282/udp
-        sudo ufw logging on
-        sudo ufw --force enable        
-        sudo apt-get install openvpn-systemd-resolved -y
-        sudo wget "https://www.dropbox.com/s/m4gxzf0iazri1ht/vpnareainstall.pl?dl=0" -O vpnarea.sh | bash
-        sudo chmod 755 vpnarea.sh
-        sudo mkdir /etc/openvpn
-        sudo chmod 755 /etc/openvpn
-        sudo mkdir /etc/openvpn/update-resolv-conf
-        sudo chmod 755 /etc/openvpn/update-resolv-conf
-        sudo ./vpnarea.sh
-        sudo mv .vpnarea-config /etc/openvpn
-        else
-        if [ $choice -eq 3 ] ; then
-            echo "Skipping VPN setup"
-        else
-            echo "Please make a choice between 1-3 !"
-            echo "1. NordVPN"
-            echo "2. VPN Area"
-            echo "3. Example"
-            echo -n "Please choose a VPN [1,2 or 3]? "
-            choice=4
-        fi
+    echo "You have chosen VPN Area"
+    sudo ufw allow 53/udp
+    sudo ufw allow 111/udp
+    sudo ufw allow 123/udp
+    sudo ufw allow 443/udp
+    sudo ufw allow 1194/udp
+    sudo ufw allow 8282/udp
+    sudo ufw logging on
+    sudo ufw --force enable        
+    sudo apt-get install openvpn-systemd-resolved -y
+    sudo wget "https://www.dropbox.com/s/m4gxzf0iazri1ht/vpnareainstall.pl?dl=0" -O vpnarea.sh | bash
+    sudo chmod 755 vpnarea.sh
+    sudo mkdir /etc/openvpn
+    sudo chmod 755 /etc/openvpn
+    sudo mkdir /etc/openvpn/update-resolv-conf
+    sudo chmod 755 /etc/openvpn/update-resolv-conf
+    sudo ./vpnarea.sh
+    sudo mv .vpnarea-config /etc/openvpn
+    else
+    if [ $choice -eq 3 ] ; then
+    echo "Skipping VPN setup"
+    else
+    echo "Please make a choice between 1-3 !"
+    echo "1. NordVPN"
+    echo "2. VPN Area"
+    echo "3. Example"
+    echo -n "Please choose a VPN [1,2 or 3]? "
+    choice=4
+    fi
     fi
     fi
     done
@@ -514,32 +514,31 @@
     sudo cat /root/.crown/crown.conf
  # Notes
     echo Please continue with the guide...
-        else
+    else
 # Install B close
-        if [ $choice -eq 3 ] ; then
-            echo "Would you like to Update or Install CrownPi?"
-                else
-                    echo "Please make a choice between Update or Install !"
-                    echo "1. Update"
-                    echo "2. Install"
-                    echo -n "1 for Update 2 for Install [1 or 2]? "
-                    choice=3
-        fi
-        fi
+    if [ $choice -eq 3 ] ; then
+    echo "Would you like to Update or Install CrownPi?"
+    else
+    echo "Please make a choice between Update or Install !"
+    echo "1. Update"
+    echo "2. Install"
+    echo -n "1 for Update 2 for Install [1 or 2]? "
+    choice=3
+    fi
+    fi
     fi
     echo "Done"
     done
     else
-        if [ $choice -eq 3 ] ; then
-            echo "Are you using Linux or Raspberry Pi?"
-                else
-                    echo "Please make a choice between Linux or RPI !"
-                    echo "1. Linux"
-                    echo "2. RPI"
-                    echo -n "1 for Linux 2 for RPI [1 or 2]? "
-                    choice=3
-        fi
-        fi
+    if [ $choice -eq 3 ] ; then
+    echo "Are you using Linux or Raspberry Pi?"
+    else
+    echo "Please make a choice between Linux or RPI !"
+    echo "1. Linux"
+    echo "2. RPI"
+    echo -n "1 for Linux 2 for RPI [1 or 2]? "
+    choice=3
+    fi
+    fi
     fi
     done
-    exit
