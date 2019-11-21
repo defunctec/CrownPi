@@ -229,27 +229,6 @@
     fi
     fi
     done
-    echo "Setting up crown.conf"
-    cd $ROOT
-    sudo mkdir -p /root/.crown
-    sudo mv /root/.crown/crown.conf /root/.crown/crown.bak
-    sudo touch /root/.crown/crown.conf
-    IP=$(curl http://checkip.amazonaws.com/)
-    PW=$(< /dev/urandom tr -dc a-zA-Z0-9 | head -c32;echo;)
-    sudo echo "==========================================================="
-    sudo pwd 
-    echo 'testnet=0' | sudo tee -a /root/.crown/crown.conf
-    echo 'daemon=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'staking=1' | sudo tee -a /root/.crown/crown.conf
-    echo 'rpcallowip=127.0.0.1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'rpcuser=crowncoinrpc' | sudo tee -a /root/.crown/crown.conf 
-    echo 'rpcpassword='$PW | sudo tee -a /root/.crown/crown.conf 
-    echo 'listen=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'server=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'externalip='$IP | sudo tee -a /root/.crown/crown.conf
-    echo 'masterode=1' | sudo tee -a /root/.crown/crown.conf
-    echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
-    sudo cat /root/.crown/crown.conf
     # Notes
     echo Please continue with the guide...
     else
