@@ -22,14 +22,14 @@
     if [ $choice -eq 1 ] ; then
 # Update or Install
     echo "Would you like to Update or Install CrownPi?"
-# Install open
+# Install A open
     choice=3
     echo "1. Update"
     echo "2. Install"
     echo -n "1 for Update 2 for Install [1 or 2]? "
     while [ $choice -eq 3 ]; do
     read choice
-# Install 1
+# Install A1
     if [ $choice -eq 1 ] ; then
     clear
     echo Updating...
@@ -50,7 +50,7 @@
 # Update crown client
     sudo crown-server-install.sh -w 1
     else
-# Install 2        
+# Install A2        
         if [ $choice -eq 2 ] ; then
 # Stop Crown client
     sudo crown-cli stop
@@ -241,7 +241,7 @@
     fi
     done
     else
-# Install 3 close
+# Install A close
         if [ $choice -eq 3 ] ; then
             echo "Would you like to Update or Install CrownPi?"
                 else
@@ -254,8 +254,9 @@
         fi
     fi
 # Notes
-    echo "Please continue with the guide..."
     done
+    echo "Please continue with the guide..."
+    exit
 
 # Install or update RPI =================================================
     else
@@ -517,6 +518,7 @@
  # Notes
     echo Please continue with the guide...
         else
+# Install B close
         if [ $choice -eq 3 ] ; then
             echo "Would you like to Update or Install CrownPi?"
                 else
@@ -529,7 +531,6 @@
         fi
     fi
     echo "Done"
-    echo
     done
     else
         if [ $choice -eq 3 ] ; then
