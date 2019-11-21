@@ -170,7 +170,7 @@
                     choice=3
         fi
         fi
-        fi
+    fi
     done
 # NordVPN Install
 # Declare variable choice and assign value 4
