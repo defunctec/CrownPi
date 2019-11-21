@@ -123,9 +123,9 @@
                     echo "2. No"
                     echo -n "1 for Yes 2 for No [1 or 2]? "
                     choice=3
-        fi   
         fi
-    fi
+        fi
+        fi
     echo "Done"
     done
 # Firewall
@@ -168,9 +168,9 @@
                     echo "2. No"
                     echo -n "1 for Yes 2 for No [1 or 2]? "
                     choice=3
-        fi   
         fi
-    fi
+        fi
+        fi
     done
 # NordVPN Install
 # Declare variable choice and assign value 4
@@ -206,7 +206,7 @@
         echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
         echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
         echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
-    else                   
+    else
     if [ $choice -eq 2 ] ; then
         echo "You have chosen VPN Area"
         sudo ufw allow 53/udp
@@ -226,7 +226,7 @@
         sudo chmod 755 /etc/openvpn/update-resolv-conf
         sudo ./vpnarea.sh
         sudo mv .vpnarea-config /etc/openvpn
-        else 
+        else
         if [ $choice -eq 3 ] ; then
             echo "Skipping VPN setup"
         else
@@ -236,7 +236,7 @@
             echo "3. Example"
             echo -n "Please choose a VPN [1,2 or 3]? "
             choice=4
-        fi   
+        fi
     fi
     fi
     done
@@ -250,7 +250,7 @@
                     echo "2. Install"
                     echo -n "1 for Update 2 for Install [1 or 2]? "
                     choice=3
-        fi   
+        fi
         fi
     fi
 # Notes
@@ -345,7 +345,7 @@
     sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O $dir/bootstrap.zip
     sudo unzip -d $dir/crown $dir/bootstrap.zip
     sudo rm -rf $dir/bootstrap.zip
-    else                   
+    else
         if [ $choice -eq 2 ] ; then
                  echo "Skip bootstrap" 
     else
@@ -357,7 +357,7 @@
                     echo "2. No"
                     echo -n "1 for Yes 2 for No [1 or 2]? "
                     choice=3
-        fi   
+        fi
         fi
     fi
     echo "Done"
@@ -408,7 +408,7 @@
         sudo apt-get install zabbix-agent -y
         echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
         echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspbery1
-    else                   
+    else
         if [ $choice -eq 2 ] ; then
             echo "Skip Zabbix agent installation"    
     else
@@ -420,7 +420,7 @@
                     echo "2. No"
                     echo -n "1 for Yes 2 for No [1 or 2]? "
                     choice=3
-        fi   
+        fi
         fi
     fi
     done
@@ -457,7 +457,7 @@
         echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
         echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
         echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
-    else                   
+    else
     if [ $choice -eq 2 ] ; then
         echo "You have chosen VPN Area"
         sudo ufw allow 53/udp
@@ -477,7 +477,7 @@
         sudo chmod 755 /etc/openvpn/update-resolv-conf
         sudo ./vpnarea.sh
         sudo mv .vpnarea-config /etc/openvpn
-        else 
+        else
         if [ $choice -eq 3 ] ; then
             echo "Skipping VPN setup"
         else
@@ -487,7 +487,7 @@
             echo "3. Example"
             echo -n "Please choose a VPN [1,2 or 3]? "
             choice=4
-        fi   
+        fi
     fi
     fi
     done
@@ -524,7 +524,7 @@
                     echo "2. Install"
                     echo -n "1 for Update 2 for Install [1 or 2]? "
                     choice=3
-        fi   
+        fi
         fi
     fi
     echo "Done"
@@ -538,7 +538,8 @@
                     echo "2. RPI"
                     echo -n "1 for Linux 2 for RPI [1 or 2]? "
                     choice=3
-        fi   
+        fi
         fi
     fi
     done
+    exit
