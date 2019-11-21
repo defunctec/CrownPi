@@ -96,7 +96,7 @@
     read choice
     if [ $choice -eq 1 ] ; then
     echo Downloading bootstrap
-    sudo wget "https://nextcloud.crown.tech/nextcloud/s/RiyWmDLckmcXS6n/download" -O $dir/bootstrap.zip
+    sudo wget "https://nextcloud.crownplatform.com/nextcloud/s/RiyWmDLckmcXS6n/download" -O $dir/bootstrap.zip
     sudo unzip -d $dir/crown $dir/bootstrap.zip
     sudo rm -rf $dir/bootstrap.zip
     else                   
@@ -353,7 +353,7 @@
     read choice
     if [ $choice -eq 1 ] ; then
     echo Downloading bootstrap
-    sudo wget "https://nextcloud.crown.tech/nextcloud/s/RiyWmDLckmcXS6n/download" -O $dir/bootstrap.zip
+    sudo wget "https://nextcloud.crownplatform.com/nextcloud/s/RiyWmDLckmcXS6n/download" -O $dir/bootstrap.zip
     sudo unzip -d $dir/crown $dir/bootstrap.zip
     sudo rm -rf $dir/bootstrap.zip
     else                   
