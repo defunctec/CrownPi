@@ -9,9 +9,10 @@
      echo "| |____| | | (_) \ V  V /| | | | |   | |"
      echo " \_____|_|  \___/ \_/\_/ |_| |_|_|   |_|"     
      echo
-     sleep 3
+     sleep 1
 # Choose OS
     echo "Are you using Linux or Raspberry Pi?"
+# OS open
     choice=3
     echo "1. Linux"
     echo "2. RPI"
@@ -21,12 +22,14 @@
     if [ $choice -eq 1 ] ; then
 # Update or Install
     echo "Would you like to Update or Install CrownPi?"
+# Install open
     choice=3
     echo "1. Update"
     echo "2. Install"
     echo -n "1 for Update 2 for Install [1 or 2]? "
     while [ $choice -eq 3 ]; do
     read choice
+# Install 1
     if [ $choice -eq 1 ] ; then
     clear
     echo Updating...
@@ -46,7 +49,8 @@
     echo
 # Update crown client
     sudo crown-server-install.sh -w 1
-    else                   
+    else
+# Install 2        
         if [ $choice -eq 2 ] ; then
 # Stop Crown client
     sudo crown-cli stop
@@ -90,23 +94,27 @@
     sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
     echo Would you like to download the bootstrap?
+# Boot A open
     choice=3
     echo "1. Yes"
     echo "2. No"
     echo -n "1 for Yes 2 for No [1 or 2]? "
     while [ $choice -eq 3 ]; do
     read choice
+# Boot A1
     if [ $choice -eq 1 ] ; then
     echo Downloading bootstrap
     sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O $dir/bootstrap.zip
     sudo unzip -d $dir/crown $dir/bootstrap.zip
     sudo rm -rf $dir/bootstrap.zip
     sudo crown-server-install.sh -c -m
-    else                   
+    else
+# Boot A2
         if [ $choice -eq 2 ] ; then
                  echo "Skip bootstrap"
                  sudo crown-server-install.sh -c -m
     else
+# Boot A3
         if [ $choice -eq 3 ] ; then
             echo "Would you like to download the bootstrap?"
                 else
@@ -119,7 +127,6 @@
         fi
     fi
     echo "Done"
-    echo
     done
 # Firewall
     echo Setting up firewall...
@@ -129,6 +136,7 @@
 # Zabbix Install
 # Declare variable choice and assign value 4
     echo Would you like to install a Zabbix agent?
+# Zabbix A open
     choice=3
 # Print to stdout
     echo "1. Yes"
@@ -167,6 +175,7 @@
 # NordVPN Install
 # Declare variable choice and assign value 4
     echo Please choose a VPN provider...
+# VPN A open
     choice=4
 # Print to stdout
     echo "1. NordVPN"
@@ -231,9 +240,8 @@
     fi
     fi
     done
-    # Notes
-    echo Please continue with the guide...
     else
+# Install 3 close
         if [ $choice -eq 3 ] ; then
             echo "Would you like to Update or Install CrownPi?"
                 else
@@ -245,19 +253,24 @@
         fi   
         fi
     fi
-    echo "Done"
-    echo
+# Notes
+    echo "Please continue with the guide..."
     done
-    else                   
+
+# Install or update RPI =================================================
+    else
+# OS 2 B
         if [ $choice -eq 2 ] ; then
 # Update or Install
     echo "Would you like to Update or Install CrownPi?"
+# Install B Open
     choice=3
     echo "1. Update"
     echo "2. Install"
     echo -n "1 for Update 2 for Install [1 or 2]? "
     while [ $choice -eq 3 ]; do
     read choice
+# Install B1
     if [ $choice -eq 1 ] ; then
     clear
     echo Updating...
@@ -275,7 +288,8 @@
     sudo apt autoremove -y >/dev/null 2>&1
     echo "Done"
     echo
-    else                   
+    else
+# Install B2
         if [ $choice -eq 2 ] ; then
 # Install Raspberry Pi
 # Shutdown crownd
@@ -349,7 +363,6 @@
         fi
     fi
     echo "Done"
-    echo
     done
     # Download Crown client (Update link with new client)
     # Password change prompt
@@ -377,6 +390,7 @@
 # Zabbix Install
 # Declare variable choice and assign value 4
     echo "Would you like to install a Zabbix agent?"
+# Zabbix B
     choice=3
 # Print to stdout
     echo "1. Yes"
@@ -415,6 +429,7 @@
 # NordVPN Install
 # Declare variable choice and assign value 4
     echo "Please choose a VPN provider..."
+# VPN B
     choice=4
 # Print to stdout
     echo "1. NordVPN"
@@ -426,7 +441,6 @@
     while [ $choice -eq 4 ]; do
 # read user input
     read choice
-# bash nested if/else
     if [ $choice -eq 1 ] ; then
         echo "You have chosen NordVPN"
         wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
