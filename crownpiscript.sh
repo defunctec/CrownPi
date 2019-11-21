@@ -48,6 +48,8 @@
     sudo crown-server-install.sh -w 1
     else                   
         if [ $choice -eq 2 ] ; then
+# Stop Crown client
+    sudo crown-cli stop
 # Software install
     echo Installing software...
     sudo apt-get install ufw -y
@@ -99,7 +101,7 @@
     sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O $dir/bootstrap.zip
     sudo unzip -d $dir/crown $dir/bootstrap.zip
     sudo rm -rf $dir/bootstrap.zip
-    sudo crown-server-install.sh -c
+    sudo crown-server-install.sh -c -m
     else                   
         if [ $choice -eq 2 ] ; then
                  echo "Skip bootstrap"
@@ -527,6 +529,4 @@
         fi   
         fi
     fi
-    echo "Done"
-    echo
     done
