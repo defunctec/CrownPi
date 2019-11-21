@@ -255,9 +255,6 @@
     fi
 # Notes
     done
-    echo "Please continue with the guide..."
-    exit
-
 # Install or update RPI =================================================
     else
 # OS 2 B
