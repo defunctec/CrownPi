@@ -105,7 +105,7 @@
     else                   
         if [ $choice -eq 2 ] ; then
                  echo "Skip bootstrap"
-                 sudo crown-server-install.sh -c 
+                 sudo crown-server-install.sh -c -m
     else
         if [ $choice -eq 3 ] ; then
             echo "Would you like to download the bootstrap?"
