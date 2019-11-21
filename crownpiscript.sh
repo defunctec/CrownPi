@@ -85,7 +85,7 @@
     echo
 # Maintenance scripts
     echo Downloading watchdog script...
-    sudo curl -o /usr/local/bin/crown-server-install.sh sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
+    sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
     echo Would you like to download the bootstrap?
     choice=3
@@ -340,7 +340,7 @@
     fi
 # Maintenance scripts
     echo Downloading watchdog script...
-    sudo curl -o /usr/local/bin/crown-server-install.sh sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
+    sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
     echo Would you like to download the Crown bootstrap?
     choice=3
