@@ -96,9 +96,10 @@
     read choice
     if [ $choice -eq 1 ] ; then
     echo Downloading bootstrap
-    sudo wget "https://nextcloud.crownplatform.com/nextcloud/s/RiyWmDLckmcXS6n/download" -O $dir/bootstrap.zip
+    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O $dir/bootstrap.zip
     sudo unzip -d $dir/crown $dir/bootstrap.zip
     sudo rm -rf $dir/bootstrap.zip
+    sudo crown-server-install.sh -c
     else                   
         if [ $choice -eq 2 ] ; then
                  echo "Skip bootstrap" 
@@ -117,12 +118,6 @@
     echo "Done"
     echo
     done
-# Install Crown client
-    echo "Installing Crown client..."
-    sudo unzip -d $dir/crown $dir/crown.zip
-    sudo cp -f $dir/crown/*/bin/* /usr/local/bin/
-    sudo cp -f $dir/crown/*/lib/* /usr/local/lib/
-    sudo rm -rf $tmp
 # Firewall
     echo Setting up firewall...
     sudo ufw allow ssh/tcp
@@ -353,7 +348,7 @@
     read choice
     if [ $choice -eq 1 ] ; then
     echo Downloading bootstrap
-    sudo wget "https://nextcloud.crownplatform.com/nextcloud/s/RiyWmDLckmcXS6n/download" -O $dir/bootstrap.zip
+    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O $dir/bootstrap.zip
     sudo unzip -d $dir/crown $dir/bootstrap.zip
     sudo rm -rf $dir/bootstrap.zip
     else                   
