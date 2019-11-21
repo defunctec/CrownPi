@@ -54,6 +54,7 @@
     sudo apt-get install unzip -y
     sudo apt-get install nano -y
     sudo apt-get install p7zip -y
+    sudo apt-get install curl -y
     echo "Done"
     echo
 # Attempt to create 1GB swap ram
