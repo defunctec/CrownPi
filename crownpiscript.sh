@@ -96,7 +96,9 @@
     read choice
     if [ $choice -eq 1 ] ; then
     echo Downloading bootstrap
-    sudo crown-server-install.sh -b
+    sudo wget "https://nextcloud.crown.tech/nextcloud/s/RiyWmDLckmcXS6n/download" -O $dir/bootstrap.zip
+    sudo unzip -d $dir/crown $dir/bootstrap.zip
+    sudo rm -rf $dir/bootstrap.zip
     else                   
         if [ $choice -eq 2 ] ; then
                  echo "Skip bootstrap" 
@@ -351,7 +353,9 @@
     read choice
     if [ $choice -eq 1 ] ; then
     echo Downloading bootstrap
-    sudo crown-server-install.sh -b
+    sudo wget "https://nextcloud.crown.tech/nextcloud/s/RiyWmDLckmcXS6n/download" -O $dir/bootstrap.zip
+    sudo unzip -d $dir/crown $dir/bootstrap.zip
+    sudo rm -rf $dir/bootstrap.zip
     else                   
         if [ $choice -eq 2 ] ; then
                  echo "Skip bootstrap" 
