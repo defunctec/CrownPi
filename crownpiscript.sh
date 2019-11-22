@@ -241,14 +241,13 @@
     done
 # Install A close
     else
-    echo "Please make a choice between Update or Install !"
-    echo "1. Update"
-    echo "2. Install"
-    echo -n "1 for Update 2 for Install [1 or 2]? "
-    choice=3
+        echo "Please make a choice between Update or Install !"
+        echo "1. Update"
+        echo "2. Install"
+        echo -n "1 for Update 2 for Install [1 or 2]? "
+        choice=3
+        fi
     fi
-    fi
-# Notes
     done
 # Install or update RPI =================================================
     else
@@ -344,15 +343,11 @@
     if [ $choice -eq 2 ] ; then
     echo "Skip bootstrap" 
     else
-    if [ $choice -eq 3 ] ; then
-    echo "Would you like to download the bootstrap?"
-    else
     echo "Please make a choice between Yes or No !"
     echo "1. Yes"
     echo "2. No"
     echo -n "1 for Yes 2 for No [1 or 2]? "
     choice=3
-    fi
     fi
     fi
     echo "Done"
@@ -407,15 +402,11 @@
     if [ $choice -eq 2 ] ; then
     echo "Skip Zabbix agent installation"    
     else
-    if [ $choice -eq 3 ] ; then
-    echo "Would you like to install Zabbix agent?"
-    else
     echo "Please make a choice between Yes or No !"
     echo "1. Yes"
     echo "2. No"
     echo -n "1 for Yes 2 for No [1 or 2]? "
     choice=3
-    fi
     fi
     fi
     done
@@ -509,10 +500,7 @@
     sudo cat /root/.crown/crown.conf
  # Notes
     echo Please continue with the guide...
-    else
 # Install B close
-    if [ $choice -eq 3 ] ; then
-    echo "Would you like to Update or Install CrownPi?"
     else
     echo "Please make a choice between Update or Install !"
     echo "1. Update"
@@ -521,19 +509,14 @@
     choice=3
     fi
     fi
-    fi
     echo "Done"
     done
-    else
-    if [ $choice -eq 3 ] ; then
-    echo "Are you using Linux or Raspberry Pi?"
     else
     echo "Please make a choice between Linux or RPI !"
     echo "1. Linux"
     echo "2. RPI"
     echo -n "1 for Linux 2 for RPI [1 or 2]? "
     choice=3
-    fi
     fi
     fi
     done
