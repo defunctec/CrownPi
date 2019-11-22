@@ -178,7 +178,7 @@
     echo -n "Please choose a VPN [1,2 or 3]? "
 # Loop while the variable choice is equal 4
 # bash while loop
-    while [ $choice -eq 4 ]; do
+    while [ $choice -eq 3 ]; do
 # read user input
     read -r choice
 # bash nested if/else
@@ -223,11 +223,6 @@
             sudo ./vpnarea.sh
             sudo mv .vpnarea-config /etc/openvpn
 
-        else
-
-            if [ "$choice" -eq 3 ] ; then
-                echo "Skipping VPN setup"
-
             else
                 echo "Please make a choice between 1-3 !"
                 echo "1. NordVPN"
@@ -237,7 +232,6 @@
                 choice=4
             fi
         fi
-    fi
     done
 # Install A close
     else
