@@ -189,60 +189,63 @@
     read choice
 # bash nested if/else
     if [ $choice -eq 1 ] ; then
-    echo "You have chosen NordVPN"
-    wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
-    sudo p7zip -d nordvpn.7z
-    sudo mv openvpn /etc
-    sudo apt-get install openvpn -y
-    sudo chmod 755 /etc/openvpn
-    sudo ufw allow 1194/udp
-    sudo ufw logging on
-    sudo ufw --force enable
-    echo Please enter your NordVPN username and password, with the username at the top and password below the username.
-    read -p "Press enter to continue"
-    sudo nano /etc/openvpn/auth.txt
-    sleep 2
-    sudo ls -a /etc/openvpn/nordvpn
-    echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
-    echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
-    echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
+        echo "You have chosen NordVPN"
+        wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
+        sudo p7zip -d nordvpn.7z
+        sudo mv openvpn /etc
+        sudo apt-get install openvpn -y
+        sudo chmod 755 /etc/openvpn
+        sudo ufw allow 1194/udp
+        sudo ufw logging on
+        sudo ufw --force enable
+        echo Please enter your NordVPN username and password, with the username at the top and password below the username.
+        read -p "Press enter to continue"
+        sudo nano /etc/openvpn/auth.txt
+        sleep 2
+        sudo ls -a /etc/openvpn/nordvpn
+        echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
+        echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
+        echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
+
     else
-    if [ $choice -eq 2 ] ; then
-    echo "You have chosen VPN Area"
-    sudo ufw allow 53/udp
-    sudo ufw allow 111/udp
-    sudo ufw allow 123/udp
-    sudo ufw allow 443/udp
-    sudo ufw allow 1194/udp
-    sudo ufw allow 8282/udp
-    sudo ufw logging on
-    sudo ufw --force enable        
-    sudo apt-get install openvpn-systemd-resolved -y
-    sudo wget "https://www.dropbox.com/s/m4gxzf0iazri1ht/vpnareainstall.pl?dl=0" -O vpnarea.sh | bash
-    sudo chmod 755 vpnarea.sh
-    sudo mkdir /etc/openvpn
-    sudo chmod 755 /etc/openvpn
-    sudo mkdir /etc/openvpn/update-resolv-conf
-    sudo chmod 755 /etc/openvpn/update-resolv-conf
-    sudo ./vpnarea.sh
-    sudo mv .vpnarea-config /etc/openvpn
-    else
-    if [ $choice -eq 3 ] ; then
-    echo "Skipping VPN setup"
-    else
-    if [ $choice -eq 4 ] ; then
-    echo "Please make a choice between 1-3 !"
-    echo "1. NordVPN"
-    echo "2. VPN Area"
-    echo "3. Skip"
-    echo -n "Please choose a VPN [1,2 or 3]? "
-    choice=4
+
+        if [ $choice -eq 2 ] ; then
+            echo "You have chosen VPN Area"
+            sudo ufw allow 53/udp
+            sudo ufw allow 111/udp
+            sudo ufw allow 123/udp
+            sudo ufw allow 443/udp
+            sudo ufw allow 1194/udp
+            sudo ufw allow 8282/udp
+            sudo ufw logging on
+            sudo ufw --force enable        
+            sudo apt-get install openvpn-systemd-resolved -y
+            sudo wget "https://www.dropbox.com/s/m4gxzf0iazri1ht/vpnareainstall.pl?dl=0" -O vpnarea.sh | bash
+            sudo chmod 755 vpnarea.sh
+            sudo mkdir /etc/openvpn
+            sudo chmod 755 /etc/openvpn
+            sudo mkdir /etc/openvpn/update-resolv-conf
+            sudo chmod 755 /etc/openvpn/update-resolv-conf
+            sudo ./vpnarea.sh
+            sudo mv .vpnarea-config /etc/openvpn
+
+        else
+
+            if [ $choice -eq 3 ] ; then
+                echo "Skipping VPN setup"
+
+            else
+                echo "Please make a choice between 1-3 !"
+                echo "1. NordVPN"
+                echo "2. VPN Area"
+                echo "3. Skip"
+                echo -n "Please choose a VPN [1,2 or 3]? "
+                choice=4
+            fi
+        fi
     fi
-    fi
-    fi
-    fi
-    done
-    else
+done
+else
 # Install A close
     if [ $choice -eq 3 ] ; then
     echo "Would you like to Update or Install CrownPi?"
