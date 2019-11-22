@@ -1,7 +1,7 @@
 # CrownPi - (MNPoS 0.13.4)
 > Local Masternode hosting for the Crown(CRW) community.
 
-![](https://imgur.com/yWxTrUM)
+![alt text](https://imgur.com/yWxTrUM)
 
 ## Introduction
 
@@ -75,7 +75,7 @@ sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscr
 ```sh
 sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
-![](https://imgur.com/6gFdUaN)
+![alt text](https://imgur.com/6gFdUaN)
 
 6. Follow the instructions and enter your VPN details when promted (VPN instructions below)
 7. Now the VPN is setup, use the crown.conf to enter VPN IP, genkey ect.
