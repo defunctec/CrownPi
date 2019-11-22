@@ -39,12 +39,12 @@
     echo ===============================================
 # Shutdown crownd
     echo "Shutting down crown client"
-    sudo crown-cli stop
+    crown-cli stop
     echo ===============================================
 # Update crown client
     sudo crown-server-install.sh
     else
-# Install A2        
+# Install A2
     if [ "$choice" -eq 2 ] ; then
 # Stop Crown client
     echo ===============================================
@@ -193,6 +193,7 @@
         echo "2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf"
         echo "3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers."
         echo ===============================================
+        echo Please continue with the guide...
 
     else
 
@@ -256,7 +257,7 @@
     echo "Updating..."
 # Shutdown crownd
     echo ===============================================
-    echo "Shutting down crown client"
+    echo "Shutting down Crown client"
     sudo crown-cli stop
 # Update OS
     echo ===============================================
@@ -266,7 +267,29 @@
     sudo apt autoremove -y >/dev/null 2>&1
 # Update Crown
     echo ===============================================
-
+    echo "Getting 0.13.4 MN-PoS client..."
+    # Create temporary directory
+    dir=$(mktemp -d)
+    if [ -z "$dir" ]; then
+    # Create directory under $HOME if above operation failed
+    dir=$HOME/crown-temp
+    mkdir -p "$dir"
+    fi
+    # Change this later to take latest release version.(UPDATE)
+    sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O "$dir/crown.zip"
+# Install Crown client
+    echo ===============================================
+    echo "Installing Crown client..."
+    sudo unzip -d "$dir/crown" "$dir/crown.zip"
+    sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
+    sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
+    sudo rm -rf "$tmp"
+# Shutdown crownd
+    echo ===============================================
+    echo "Shutting down Crown client"
+    sudo crownd
+# Update ann
+    echo "Update finished."
     else
 # Install B2
     if [ "$choice" -eq 2 ] ; then
@@ -439,6 +462,7 @@
     echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
     echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
     echo ===============================================
+    echo Please continue with the guide...
     else
     if [ "$choice" -eq 2 ] ; then
     echo "You have chosen VPN Area"
@@ -501,7 +525,6 @@
     choice=3
     fi
     fi
-    echo "Done"
     done
     else
     echo "Please make a choice between Linux or RPI !"
