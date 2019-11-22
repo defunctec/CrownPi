@@ -248,7 +248,6 @@
     choice=3
     fi
     fi
-    fi
 # Notes
     done
 # Install or update RPI =================================================
