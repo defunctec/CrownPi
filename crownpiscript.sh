@@ -11,6 +11,7 @@
      echo
      sleep 1
 # Choose OS
+    echo ===============================================
     echo "Are you using Linux or Raspberry Pi?"
 # OS open
     choice=3
@@ -21,6 +22,7 @@
     read -r choice
     if [ "$choice" -eq 1 ] ; then
 # Update or Install
+    echo ===============================================
     echo "Would you like to Update or Install CrownPi?"
 # Install A open
     choice=3
@@ -32,29 +34,30 @@
 # Install A1
     if [ "$choice" -eq 1 ] ; then
     clear
+    echo ===============================================
     echo Updating...
-    sleep 1
 # Shutdown crownd
     echo "Shutting down crown client"
     sudo crown-cli stop
     echo "Done"
-    sleep 1
+    echo ===============================================
 # Update OS
-    echo
     echo "Making sure the system is up to date (this could take a few minutes)."
     sudo apt-get update >/dev/null 2>&1
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade >/dev/null 2>&1
     sudo apt autoremove -y >/dev/null 2>&1
-    echo "Done"
-    echo
+    echo ===============================================
 # Update crown client
     sudo crown-server-install.sh -w 1
     else
 # Install A2        
     if [ "$choice" -eq 2 ] ; then
 # Stop Crown client
+    echo ===============================================
+    echo "Stopping Crown client"
     sudo crown-cli stop
 # Software install
+    echo ===============================================
     echo Installing software...
     sudo apt-get install ufw -y
     sudo apt-get install unzip -y
@@ -64,6 +67,7 @@
     echo "Done"
     echo
 # Attempt to create 1GB swap ram
+    echo ===============================================
     echo Adding 2GB Swap
     if [ "$(sudo swapon | wc -l)" -lt 2 ]; then
     echo    
@@ -78,22 +82,20 @@
     sudo grep -q -F "$swap_line" /etc/fstab || echo "$swap_line" | sudo tee --append /etc/fstab > /dev/null
     echo "The updated /etc/fstab looks like this:"
     cat /etc/fstab
-    echo "Done"
-    echo
     fi
 # Update OS
-    echo
+    echo ===============================================
     echo "Making sure the system is up to date (this could take a few minutes)."
     sudo apt-get update >/dev/null 2>&1
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade >/dev/null 2>&1
     sudo apt autoremove -y >/dev/null 2>&1
-    echo "Done"
-    echo
 # Maintenance scripts
+    echo ===============================================
     echo Downloading watchdog script...
     sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
 # Boot A open
+    echo ===============================================
     echo Would you like to download the bootstrap?
     choice=3
     echo "1. Yes"
@@ -103,6 +105,7 @@
     read -r choice
 # Boot A1
     if [ "$choice" -eq 1 ] ; then
+    echo ===============================================
     echo Downloading bootstrap
     sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "$dir/bootstrap.zip"
     sudo unzip -d "$dir/crown" "$dir/bootstrap.zip"
@@ -111,7 +114,9 @@
     else
 # Boot A2
     if [ "$choice" -eq 2 ] ; then
-    echo "Skip bootstrap"
+    echo ===============================================
+    echo "Skipping bootstrap"
+    echo "Installing Crown client"
     sudo crown-server-install.sh -c -m
     else
     echo "Please make a choice between Yes or No !"
@@ -121,15 +126,16 @@
     choice=3
     fi
     fi
-    echo "Done"
     done
 # Firewall
+    echo ===============================================
     echo Setting up firewall...
     sudo ufw allow ssh/tcp
     sudo ufw limit ssh/tcp
     sudo ufw allow 9340/tcp
 # Zabbix Install
 # Zabbix A open
+    echo ===============================================
     echo Would you like to install a Zabbix agent?
     choice=3
 # Print to stdout
@@ -143,7 +149,6 @@
     read -r choice
 # bash nested if/else
     if [ "$choice" -eq 1 ] ; then
-
         echo "You have chosen to install a Zabbix agent"
         sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
         sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
@@ -156,7 +161,6 @@
     else
 
         if [ "$choice" -eq 2 ] ; then
-
             echo "Skip Zabbix agent installation"    
         else
             echo "Please make a choice between Yes or No !"
@@ -169,6 +173,7 @@
     done
 # NordVPN Install
 # VPN A open
+    echo ===============================================
     echo Please choose a VPN provider...
     choice=3
 # Print to stdout
@@ -196,9 +201,9 @@
         sudo nano /etc/openvpn/auth.txt
         sleep 2
         sudo ls -a /etc/openvpn/nordvpn
-        echo 1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers
-        echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
-        echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
+        echo "1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers"
+        echo "2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf"
+        echo "3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers."
 
     else
 
@@ -246,6 +251,7 @@
 # OS 2 B
     if [ $choice -eq 2 ] ; then
 # Update or Install
+    echo ===============================================
     echo "Would you like to Update or Install CrownPi?"
 # Install B Open
     choice=3
@@ -257,32 +263,28 @@
 # Install B1
     if [ "$choice" -eq 1 ] ; then
     clear
-    echo Updating...
-    sleep 1
+    echo ===============================================
+    echo "Updating..."
 # Shutdown crownd
+    echo ===============================================
     echo "Shutting down crown client"
     sudo crown-cli stop
-    echo "Done"
-    sleep 1
 # Update OS
-    echo
+    echo ===============================================
     echo "Making sure the system is up to date (this could take a few minutes)."
     sudo apt-get update >/dev/null 2>&1
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade >/dev/null 2>&1
     sudo apt autoremove -y >/dev/null 2>&1
-    echo "Done"
-    echo
     else
 # Install B2
     if [ "$choice" -eq 2 ] ; then
 # Install Raspberry Pi
 # Shutdown crownd
+    echo ===============================================
     echo "Shutting down crown client"
     sudo crown-cli stop
-    echo "Done"
-    sleep 1
 # Update OS
-    echo
+    echo ===============================================
     echo "Making sure the system is up to date (this could take a few minutes)."
     sudo apt-get update >/dev/null 2>&1
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade >/dev/null 2>&1
@@ -290,7 +292,8 @@
     echo "Done"
     echo
 # Software install
-    echo Installing software...
+    echo ===============================================
+    echo "Installing software..."
     sudo apt-get install ufw -y
     sudo apt-get install unzip -y
     sudo apt-get install nano -y
@@ -298,6 +301,7 @@
     echo "Done"
     echo
 # Attempt to create 2GB swap ram
+    echo ===============================================
     echo Adding 2GB Swap
     if [ "$(sudo swapon | wc -l)" -lt 2 ]; then
     echo    
@@ -316,6 +320,7 @@
     echo
     fi
 # Maintenance scripts
+    echo ===============================================
     echo Downloading watchdog script...
     sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
@@ -346,6 +351,7 @@
     done
     # Download Crown client (Update link with new client)
     # Password change prompt
+    echo ===============================================
     echo "Getting 0.13.4 MN-PoS client..."
     # Create temporary directory
     dir=$(mktemp -d)
@@ -357,18 +363,21 @@
     # Change this later to take latest release version.
     sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O "$dir/crown.zip"
 # Install Crown client
+    echo ===============================================
     echo "Installing Crown client..."
     sudo unzip -d "$dir/crown" "$dir/crown.zip"
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
     sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
     sudo rm -rf "$tmp"
 # Firewall
+    echo ===============================================
     echo "Setting up firewall..."
     sudo ufw allow ssh/tcp
     sudo ufw limit ssh/tcp
     sudo ufw allow 9340/tcp
 # Zabbix Install
 # Declare variable choice and assign value 4
+    echo ===============================================
     echo "Would you like to install a Zabbix agent?"
 # Zabbix B
     choice=3
@@ -404,6 +413,7 @@
     done
 # NordVPN Install
 # Declare variable choice and assign value 4
+    echo ===============================================
     echo "Please choose a VPN provider..."
 # VPN B
     choice=3
@@ -463,6 +473,7 @@
     fi
     fi
     done
+    echo ===============================================
     echo "Setting up crown.conf"
     cd "$ROOT" || exit
     sudo mkdir -p /root/.crown
@@ -485,6 +496,7 @@
     echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
     sudo cat /root/.crown/crown.conf
  # Notes
+    echo ===============================================
     echo Please continue with the guide...
 # Install B close
     else
