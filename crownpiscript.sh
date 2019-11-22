@@ -170,11 +170,10 @@
 # NordVPN Install
 # VPN A open
     echo Please choose a VPN provider...
-    choice=4
+    choice=3
 # Print to stdout
     echo "1. NordVPN"
     echo "2. VPN Area"
-    echo "3. Skip"
     echo -n "Please choose a VPN [1,2 or 3]? "
 # Loop while the variable choice is equal 4
 # bash while loop
@@ -227,9 +226,8 @@
                 echo "Please make a choice between 1-3 !"
                 echo "1. NordVPN"
                 echo "2. VPN Area"
-                echo "3. Skip"
                 echo -n "Please choose a VPN [1,2 or 3]? "
-                choice=4
+                choice=3
             fi
         fi
     done
@@ -408,15 +406,14 @@
 # Declare variable choice and assign value 4
     echo "Please choose a VPN provider..."
 # VPN B
-    choice=4
+    choice=3
 # Print to stdout
     echo "1. NordVPN"
     echo "2. VPN Area"
-    echo "3. Skip"
     echo -n "Please choose a VPN [1,2 or 3]? "
 # Loop while the variable choice is equal 4
 # bash while loop
-    while [ $choice -eq 4 ]; do
+    while [ $choice -eq 3 ]; do
 # read user input
     read -r choice
     if [ "$choice" -eq 1 ] ; then
@@ -458,16 +455,11 @@
     sudo ./vpnarea.sh
     sudo mv .vpnarea-config /etc/openvpn
     else
-    if [ "$choice" -eq 3 ] ; then
-    echo "Skipping VPN setup"
-    else
     echo "Please make a choice between 1-3 !"
     echo "1. NordVPN"
     echo "2. VPN Area"
-    echo "3. Example"
     echo -n "Please choose a VPN [1,2 or 3]? "
-    choice=4
-    fi
+    choice=3
     fi
     fi
     done
