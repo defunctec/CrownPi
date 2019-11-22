@@ -36,19 +36,13 @@
     clear
     echo ===============================================
     echo Updating...
+    echo ===============================================
 # Shutdown crownd
     echo "Shutting down crown client"
     sudo crown-cli stop
-    echo "Done"
-    echo ===============================================
-# Update OS
-    echo "Making sure the system is up to date (this could take a few minutes)."
-    sudo apt-get update >/dev/null 2>&1
-    sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade >/dev/null 2>&1
-    sudo apt autoremove -y >/dev/null 2>&1
     echo ===============================================
 # Update crown client
-    sudo crown-server-install.sh -w 1
+    sudo crown-server-install.sh
     else
 # Install A2        
     if [ "$choice" -eq 2 ] ; then
@@ -83,12 +77,6 @@
     echo "The updated /etc/fstab looks like this:"
     cat /etc/fstab
     fi
-# Update OS
-    echo ===============================================
-    echo "Making sure the system is up to date (this could take a few minutes)."
-    sudo apt-get update >/dev/null 2>&1
-    sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade >/dev/null 2>&1
-    sudo apt autoremove -y >/dev/null 2>&1
 # Maintenance scripts
     echo ===============================================
     echo Downloading watchdog script...
@@ -276,6 +264,9 @@
     sudo apt-get update >/dev/null 2>&1
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade >/dev/null 2>&1
     sudo apt autoremove -y >/dev/null 2>&1
+# Update Crown
+    echo ===============================================
+    
     else
 # Install B2
     if [ "$choice" -eq 2 ] ; then
@@ -353,16 +344,14 @@
     # Download Crown client (Update link with new client)
     # Password change prompt
     echo ===============================================
-    echo "Getting 0.13.4 MN-PoS client..."
     # Create temporary directory
     dir=$(mktemp -d)
-    if [ -z "$dir" ]; then
     # Create directory under $HOME if above operation failed
     dir=$HOME/crown-temp
-    mkdir -p "$dir"
-    fi
-    # Change this later to take latest release version.
-    sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O "$dir/crown.zip"
+    mkdir -p $dir
+        # Change this later to take latest release version.
+        echo "Downloading Crown package version $LATEST_RELEASE."
+        wget "https://github.com/Crowndev/crowncoin/releases/download/v$LATEST_RELEASE/Crown-$LATEST_RELEASE-RaspberryPi.zip" -O $dir/crown.zip
 # Install Crown client
     echo ===============================================
     echo "Installing Crown client..."
