@@ -266,7 +266,7 @@
     sudo apt autoremove -y >/dev/null 2>&1
 # Update Crown
     echo ===============================================
-    
+
     else
 # Install B2
     if [ "$choice" -eq 2 ] ; then
@@ -316,6 +316,7 @@
     echo Downloading watchdog script...
     sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
+    sudo crown-server-install.sh -m -w
     echo "Would you like to download the Crown bootstrap?"
     choice=3
     echo "1. Yes"
@@ -324,6 +325,7 @@
     while [ $choice -eq 3 ]; do
     read -r choice
     if [ "$choice" -eq 1 ] ; then
+    echo ===============================================
     echo Downloading bootstrap
     sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "$dir/bootstrap.zip"
     sudo unzip -d "$dir/crown" "$dir/bootstrap.zip"
@@ -352,7 +354,7 @@
     dir=$HOME/crown-temp
     mkdir -p "$dir"
     fi
-    # Change this later to take latest release version.
+    # Change this later to take latest release version.(UPDATE)
     sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O "$dir/crown.zip"
 # Install Crown client
     echo ===============================================
@@ -467,28 +469,6 @@
     fi
     fi
     done
-    echo ===============================================
-    echo "Setting up crown.conf"
-    cd "$ROOT" || exit
-    sudo mkdir -p /root/.crown
-    sudo mv /root/.crown/crown.conf /root/.crown/crown.bak
-    sudo touch /root/.crown/crown.conf
-    IP=$(curl http://checkip.amazonaws.com/)
-    PW=$(< /dev/urandom tr -dc a-zA-Z0-9 | head -c32;echo;)
-    sudo echo "==========================================================="
-    sudo pwd 
-    echo 'testnet=0' | sudo tee -a /root/.crown/crown.conf
-    echo 'daemon=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'staking=1' | sudo tee -a /root/.crown/crown.conf
-    echo 'rpcallowip=127.0.0.1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'rpcuser=crowncoinrpc' | sudo tee -a /root/.crown/crown.conf 
-    echo 'rpcpassword='"$PW" | sudo tee -a /root/.crown/crown.conf 
-    echo 'listen=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'server=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'externalip='"$IP" | sudo tee -a /root/.crown/crown.conf
-    echo 'masterode=1' | sudo tee -a /root/.crown/crown.conf
-    echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
-    sudo cat /root/.crown/crown.conf
  # Notes
     echo ===============================================
     echo Please continue with the guide...
