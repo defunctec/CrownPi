@@ -128,7 +128,6 @@
     fi
     done
 # Firewall
-    echo ===============================================
     echo Setting up firewall...
     sudo ufw allow ssh/tcp
     sudo ufw limit ssh/tcp
@@ -199,11 +198,12 @@
         echo Please enter your NordVPN username and password, with the username at the top and password below the username.
         read -r -p "Press enter to continue"
         sudo nano /etc/openvpn/auth.txt
-        sleep 2
         sudo ls -a /etc/openvpn/nordvpn
+        echo
         echo "1 - Choose from the list of regions - EG sudo ls -a /etc/openvpn/usservers"
         echo "2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf"
         echo "3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers."
+        echo ===============================================
 
     else
 
