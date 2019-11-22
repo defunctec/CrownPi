@@ -489,7 +489,6 @@
     echo 'externalip='"$IP" | sudo tee -a /root/.crown/crown.conf
     echo 'masterode=1' | sudo tee -a /root/.crown/crown.conf
     echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
-    sudo cat /root/.crown/crown.conf
  # Notes
     echo ===============================================
     echo Please continue with the guide...
