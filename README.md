@@ -71,13 +71,14 @@ sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscr
 2. This script must be run from root.
 3. Enable SSH connections and expand the file system using
 4. Installation is mostly automated but does require manual input.
+![alt text](https://i.imgur.com/6gFdUaN.png?1)
 5. Once logged in via SSH, use this command to initiate the installation process
 ```sh
 sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
-![alt text](https://i.imgur.com/6gFdUaN.png?1)
-
+![alt text](https://i.imgur.com/PuTLgWa.png)
 6. Follow the instructions and enter your VPN details when promted (VPN instructions below)
+![alt text](https://i.imgur.com/GAekdKu.png)
 7. Now the VPN is setup, use the crown.conf to enter VPN IP, genkey ect.
 ```sh
 sudo nano /root/.crown/crown.conf
@@ -97,6 +98,8 @@ crown-cli masternode status
 ```
 
 ## Update CrownPi
+
+![alt text](https://i.imgur.com/3zYYrpO.png)
 
 Choose between Linux and RPI, then choose update.
 
@@ -140,6 +143,8 @@ sed -i -e 's/auth-user-pass/auth-user-pass auth.txt/g' /etc/openvpn/nordvpn.conf
 
 ## VPNArea
 Quick guide to using VPNArea with CrownPI
+
+![alt text](https://i.imgur.com/uCdPqor.png)
 
 1. VPNArea installation is very simple as the script takes care of most of the work.
 2. When promted, choose which location you would like to use as VPN server
