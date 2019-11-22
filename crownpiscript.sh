@@ -148,28 +148,30 @@
 # read user input
     read choice
 # bash nested if/else
-    if [ $choice -eq 1 ] ; then 
-    echo "You have chosen to install a Zabbix agent"
-    sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
-    sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
-    sudo apt-get update -y
-    sudo apt-get install zabbix-agent -y
-    echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
-    echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspbery1
-    else                   
-    if [ $choice -eq 2 ] ; then
-    echo "Skip Zabbix agent installation"    
+    if [ $choice -eq 1 ] ; then
+
+        echo "You have chosen to install a Zabbix agent"
+        sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
+        sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
+        sudo apt-get update -y
+        sudo apt-get install zabbix-agent -y
+        echo
+        echo Note - Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
+        echo
+        echo Note - Server=[zabbix server ip] Hostname=[Hostname of Server] EG, Server=192.168.1.10 Hostname=raspbery1
+
     else
-    if [ $choice -eq 3 ] ; then
-    echo "Would you like to install Zabbix agent?"
-    else
-    echo "Please make a choice between Yes or No !"
-    echo "1. Yes"
-    echo "2. No"
-    echo -n "1 for Yes 2 for No [1 or 2]? "
-    choice=3
-    fi
-    fi
+
+        if [ $choice -eq 2 ] ; then
+
+            echo "Skip Zabbix agent installation"    
+        else
+            echo "Please make a choice between Yes or No !"
+            echo "1. Yes"
+            echo "2. No"
+            echo -n "1 for Yes 2 for No [1 or 2]? "
+            choice=3
+        fi
     fi
     done
 # NordVPN Install
