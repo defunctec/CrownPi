@@ -18,8 +18,8 @@
     echo "2. RPI"
     echo -n "1 for Linux 2 for RPI [1 or 2]? "
     while [ $choice -eq 3 ]; do
-    read choice
-    if [ $choice -eq 1 ] ; then
+    read -r choice
+    if [ "$choice" -eq 1 ] ; then
 # Update or Install
     echo "Would you like to Update or Install CrownPi?"
 # Install A open
@@ -28,9 +28,9 @@
     echo "2. Install"
     echo -n "1 for Update 2 for Install [1 or 2]? "
     while [ $choice -eq 3 ]; do
-    read choice
+    read -r choice
 # Install A1
-    if [ $choice -eq 1 ] ; then
+    if [ "$choice" -eq 1 ] ; then
     clear
     echo Updating...
     sleep 1
@@ -51,7 +51,7 @@
     sudo crown-server-install.sh -w 1
     else
 # Install A2        
-    if [ $choice -eq 2 ] ; then
+    if [ "$choice" -eq 2 ] ; then
 # Stop Crown client
     sudo crown-cli stop
 # Software install
@@ -65,7 +65,7 @@
     echo
 # Attempt to create 1GB swap ram
     echo Adding 2GB Swap
-    if [ $(sudo swapon | wc -l) -lt 2 ]; then
+    if [ "$(sudo swapon | wc -l)" -lt 2 ]; then
     echo    
     echo "There is no swap defined. Adding 2GB of swap space."
     sudo mkdir -p /var/cache/swap/   
@@ -100,17 +100,17 @@
     echo "2. No"
     echo -n "1 for Yes 2 for No [1 or 2]? "
     while [ $choice -eq 3 ]; do
-    read choice
+    read -r choice
 # Boot A1
-    if [ $choice -eq 1 ] ; then
+    if [ "$choice" -eq 1 ] ; then
     echo Downloading bootstrap
-    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O $dir/bootstrap.zip
-    sudo unzip -d $dir/crown $dir/bootstrap.zip
-    sudo rm -rf $dir/bootstrap.zip
+    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "$dir/bootstrap.zip"
+    sudo unzip -d "$dir/crown" "$dir/bootstrap.zip"
+    sudo rm -rf "$dir/bootstrap.zip"
     sudo crown-server-install.sh -c -m
     else
 # Boot A2
-    if [ $choice -eq 2 ] ; then
+    if [ "$choice" -eq 2 ] ; then
     echo "Skip bootstrap"
     sudo crown-server-install.sh -c -m
     else
@@ -140,9 +140,9 @@
 # bash while loop
     while [ $choice -eq 3 ]; do
 # read user input
-    read choice
+    read -r choice
 # bash nested if/else
-    if [ $choice -eq 1 ] ; then
+    if [ "$choice" -eq 1 ] ; then
 
         echo "You have chosen to install a Zabbix agent"
         sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
@@ -155,7 +155,7 @@
         echo
     else
 
-        if [ $choice -eq 2 ] ; then
+        if [ "$choice" -eq 2 ] ; then
 
             echo "Skip Zabbix agent installation"    
         else
@@ -180,9 +180,9 @@
 # bash while loop
     while [ $choice -eq 4 ]; do
 # read user input
-    read choice
+    read -r choice
 # bash nested if/else
-    if [ $choice -eq 1 ] ; then
+    if [ "$choice" -eq 1 ] ; then
         echo "You have chosen NordVPN"
         wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
         sudo p7zip -d nordvpn.7z
@@ -193,7 +193,7 @@
         sudo ufw logging on
         sudo ufw --force enable
         echo Please enter your NordVPN username and password, with the username at the top and password below the username.
-        read -p "Press enter to continue"
+        read -r -p "Press enter to continue"
         sudo nano /etc/openvpn/auth.txt
         sleep 2
         sudo ls -a /etc/openvpn/nordvpn
@@ -203,7 +203,7 @@
 
     else
 
-        if [ $choice -eq 2 ] ; then
+        if [ "$choice" -eq 2 ] ; then
             echo "You have chosen VPN Area"
             sudo ufw allow 53/udp
             sudo ufw allow 111/udp
@@ -225,7 +225,7 @@
 
         else
 
-            if [ $choice -eq 3 ] ; then
+            if [ "$choice" -eq 3 ] ; then
                 echo "Skipping VPN setup"
 
             else
@@ -261,9 +261,9 @@
     echo "2. Install"
     echo -n "1 for Update 2 for Install [1 or 2]? "
     while [ $choice -eq 3 ]; do
-    read choice
+    read -r choice
 # Install B1
-    if [ $choice -eq 1 ] ; then
+    if [ "$choice" -eq 1 ] ; then
     clear
     echo Updating...
     sleep 1
@@ -282,7 +282,7 @@
     echo
     else
 # Install B2
-    if [ $choice -eq 2 ] ; then
+    if [ "$choice" -eq 2 ] ; then
 # Install Raspberry Pi
 # Shutdown crownd
     echo "Shutting down crown client"
@@ -307,7 +307,7 @@
     echo
 # Attempt to create 2GB swap ram
     echo Adding 2GB Swap
-    if [ $(sudo swapon | wc -l) -lt 2 ]; then
+    if [ "$(sudo swapon | wc -l)" -lt 2 ]; then
     echo    
     echo "There is no swap defined. Adding 2GB of swap space."
     sudo mkdir -p /var/cache/swap/   
@@ -333,14 +333,14 @@
     echo "2. No"
     echo -n "1 for Yes 2 for No [1 or 2]? "
     while [ $choice -eq 3 ]; do
-    read choice
-    if [ $choice -eq 1 ] ; then
+    read -r choice
+    if [ "$choice" -eq 1 ] ; then
     echo Downloading bootstrap
-    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O $dir/bootstrap.zip
-    sudo unzip -d $dir/crown $dir/bootstrap.zip
-    sudo rm -rf $dir/bootstrap.zip
+    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "$dir/bootstrap.zip"
+    sudo unzip -d "$dir/crown" "$dir/bootstrap.zip"
+    sudo rm -rf "$dir/bootstrap.zip"
     else
-    if [ $choice -eq 2 ] ; then
+    if [ "$choice" -eq 2 ] ; then
     echo "Skip bootstrap" 
     else
     echo "Please make a choice between Yes or No !"
@@ -356,20 +356,20 @@
     # Password change prompt
     echo "Getting 0.13.4 MN-PoS client..."
     # Create temporary directory
-    dir=`mktemp -d`
+    dir=$(mktemp -d)
     if [ -z "$dir" ]; then
     # Create directory under $HOME if above operation failed
     dir=$HOME/crown-temp
-    mkdir -p $dir
+    mkdir -p "$dir"
     fi
     # Change this later to take latest release version.
-    sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O $dir/crown.zip
+    sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O "$dir/crown.zip"
 # Install Crown client
     echo "Installing Crown client..."
-    sudo unzip -d $dir/crown $dir/crown.zip
-    sudo cp -f $dir/crown/*/bin/* /usr/local/bin/
-    sudo cp -f $dir/crown/*/lib/* /usr/local/lib/
-    sudo rm -rf $tmp
+    sudo unzip -d "$dir/crown" "$dir/crown.zip"
+    sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
+    sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
+    sudo rm -rf "$tmp"
 # Firewall
     echo "Setting up firewall..."
     sudo ufw allow ssh/tcp
@@ -388,9 +388,9 @@
 # bash while loop
     while [ $choice -eq 3 ]; do
 # read user input
-    read choice
+    read -r choice
 # bash nested if/else
-    if [ $choice -eq 1 ] ; then 
+    if [ "$choice" -eq 1 ] ; then 
     echo "You have chosen to install a Zabbix agent"
     sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
     sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
@@ -399,7 +399,7 @@
     echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
     echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspbery1
     else
-    if [ $choice -eq 2 ] ; then
+    if [ "$choice" -eq 2 ] ; then
     echo "Skip Zabbix agent installation"    
     else
     echo "Please make a choice between Yes or No !"
@@ -424,8 +424,8 @@
 # bash while loop
     while [ $choice -eq 4 ]; do
 # read user input
-    read choice
-    if [ $choice -eq 1 ] ; then
+    read -r choice
+    if [ "$choice" -eq 1 ] ; then
     echo "You have chosen NordVPN"
     wget "https://www.dropbox.com/s/vgypjchd2uvxcjo/openvpn.7z?dl=0" -O nordvpn.7z
     sudo p7zip -d nordvpn.7z
@@ -436,7 +436,7 @@
     sudo ufw logging on
     sudo ufw --force enable
     echo Please enter your NordVPN username and password, with the username at the top and password below the username.
-    read -p "Press enter to continue"
+    read -r -p "Press enter to continue"
     sudo nano /etc/openvpn/auth.txt
     sleep 2
     sudo ls -a /etc/openvpn/nordvpn
@@ -444,7 +444,7 @@
     echo 2 - Once you have decided which server to use, edit this line with new server details, EG - sudo cp /etc/openvpn/nordvpn/usservers/us998.nordvpn.com.udp.ovpn /etc/openvpn/nordvpn.conf
     echo 3 - Use http://avaxhome.online/assets/nordvpn_full_server_locations_list.txt to see a full list of NordVPN servers.
     else
-    if [ $choice -eq 2 ] ; then
+    if [ "$choice" -eq 2 ] ; then
     echo "You have chosen VPN Area"
     sudo ufw allow 53/udp
     sudo ufw allow 111/udp
@@ -464,7 +464,7 @@
     sudo ./vpnarea.sh
     sudo mv .vpnarea-config /etc/openvpn
     else
-    if [ $choice -eq 3 ] ; then
+    if [ "$choice" -eq 3 ] ; then
     echo "Skipping VPN setup"
     else
     echo "Please make a choice between 1-3 !"
@@ -478,7 +478,7 @@
     fi
     done
     echo "Setting up crown.conf"
-    cd $ROOT
+    cd "$ROOT" || exit
     sudo mkdir -p /root/.crown
     sudo mv /root/.crown/crown.conf /root/.crown/crown.bak
     sudo touch /root/.crown/crown.conf
@@ -491,10 +491,10 @@
     echo 'staking=1' | sudo tee -a /root/.crown/crown.conf
     echo 'rpcallowip=127.0.0.1' | sudo tee -a /root/.crown/crown.conf 
     echo 'rpcuser=crowncoinrpc' | sudo tee -a /root/.crown/crown.conf 
-    echo 'rpcpassword='$PW | sudo tee -a /root/.crown/crown.conf 
+    echo 'rpcpassword='"$PW" | sudo tee -a /root/.crown/crown.conf 
     echo 'listen=1' | sudo tee -a /root/.crown/crown.conf 
     echo 'server=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'externalip='$IP | sudo tee -a /root/.crown/crown.conf
+    echo 'externalip='"$IP" | sudo tee -a /root/.crown/crown.conf
     echo 'masterode=1' | sudo tee -a /root/.crown/crown.conf
     echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
     sudo cat /root/.crown/crown.conf
