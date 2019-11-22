@@ -93,8 +93,8 @@
     echo Downloading watchdog script...
     sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
-    echo Would you like to download the bootstrap?
 # Boot A open
+    echo Would you like to download the bootstrap?
     choice=3
     echo "1. Yes"
     echo "2. No"
@@ -114,16 +114,11 @@
     echo "Skip bootstrap"
     sudo crown-server-install.sh -c -m
     else
-# Boot A3
-    if [ $choice -eq 3 ] ; then
-    echo "Would you like to download the bootstrap?"
-    else
     echo "Please make a choice between Yes or No !"
     echo "1. Yes"
     echo "2. No"
     echo -n "1 for Yes 2 for No [1 or 2]? "
     choice=3
-    fi
     fi
     fi
     echo "Done"
@@ -134,9 +129,8 @@
     sudo ufw limit ssh/tcp
     sudo ufw allow 9340/tcp
 # Zabbix Install
-# Declare variable choice and assign value 4
-    echo Would you like to install a Zabbix agent?
 # Zabbix A open
+    echo Would you like to install a Zabbix agent?
     choice=3
 # Print to stdout
     echo "1. Yes"
@@ -157,9 +151,8 @@
         sudo apt-get install zabbix-agent -y
         echo
         echo Note - Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
-        echo
         echo Note - Server=[zabbix server ip] Hostname=[Hostname of Server] EG, Server=192.168.1.10 Hostname=raspbery1
-
+        echo
     else
 
         if [ $choice -eq 2 ] ; then
@@ -175,9 +168,8 @@
     fi
     done
 # NordVPN Install
-# Declare variable choice and assign value 4
-    echo Please choose a VPN provider...
 # VPN A open
+    echo Please choose a VPN provider...
     choice=4
 # Print to stdout
     echo "1. NordVPN"
@@ -246,11 +238,8 @@
             fi
         fi
     fi
-done
-else
+    done
 # Install A close
-    if [ $choice -eq 3 ] ; then
-    echo "Would you like to Update or Install CrownPi?"
     else
     echo "Please make a choice between Update or Install !"
     echo "1. Update"
