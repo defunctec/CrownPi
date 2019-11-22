@@ -344,14 +344,16 @@
     # Download Crown client (Update link with new client)
     # Password change prompt
     echo ===============================================
+    echo "Getting 0.13.4 MN-PoS client..."
     # Create temporary directory
     dir=$(mktemp -d)
+    if [ -z "$dir" ]; then
     # Create directory under $HOME if above operation failed
     dir=$HOME/crown-temp
-    mkdir -p $dir
-        # Change this later to take latest release version.
-        echo "Downloading Crown package version $LATEST_RELEASE."
-        wget "https://github.com/Crowndev/crowncoin/releases/download/v$LATEST_RELEASE/Crown-$LATEST_RELEASE-RaspberryPi.zip" -O $dir/crown.zip
+    mkdir -p "$dir"
+    fi
+    # Change this later to take latest release version.
+    sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O "$dir/crown.zip"
 # Install Crown client
     echo ===============================================
     echo "Installing Crown client..."
