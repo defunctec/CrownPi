@@ -120,6 +120,10 @@
     sudo ufw allow ssh/tcp
     sudo ufw limit ssh/tcp
     sudo ufw allow 9340/tcp
+# Help scripts
+    echo ===============================================
+    echo Downloading scripts and other useful tools...
+    sudo wget "https://www.dropbox.com/s/gq4vxog7riom739/whatsmyip.sh?dl=0" -O whatsmyip.sh | bash && sudo chmod +x whatsmyip.sh
 # Zabbix Install
 # Zabbix A open
     echo ===============================================
@@ -317,23 +321,9 @@
     echo
 # Attempt to create 2GB swap ram
     echo ===============================================
-    echo Adding 2GB Swap
-    if [ "$(sudo swapon | wc -l)" -lt 2 ]; then
-    echo    
-    echo "There is no swap defined. Adding 2GB of swap space."
-    sudo mkdir -p /var/cache/swap/   
-    sudo dd if=/dev/zero of=/var/cache/swap/myswap bs=1M count=2048
-    sudo chmod 600 /var/cache/swap/myswap
-    sudo mkswap /var/cache/swap/myswap
-    sudo swapon /var/cache/swap/myswap
-    swap_line="/var/cache/swap/myswap   none    swap    sw  0   0"
-    # Add the line only once 
-    sudo grep -q -F "$swap_line" /etc/fstab || echo "$swap_line" | sudo tee --append /etc/fstab > /dev/null
-    echo "The updated /etc/fstab looks like this:"
-    cat /etc/fstab
-    echo "Done"
-    echo
-    fi
+    echo Adding 1GB Swap
+    sudo sed -i -e 's/CONF_SWAPSIZE=100/CONF_SWAPSIZE=1024/g' /etc/dphys-swapfile
+    sudo /etc/init.d/dphys-swapfile restart
 # Maintenance scripts
     echo ===============================================
     echo Downloading watchdog script...
