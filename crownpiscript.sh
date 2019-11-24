@@ -97,7 +97,7 @@
     echo Downloading bootstrap
     sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "$dir/bootstrap.zip"
     sudo unzip -d "$dir/crown" "$dir/bootstrap.zip"
-    mv /crown/bootstrap.dat /.crown
+    mv /crown/bootstrap.dat /.crown/bootstrap.dat
     sudo rm -rf "$dir/bootstrap.zip"
     sudo crown-server-install.sh -c -m
     else
@@ -342,7 +342,7 @@
     echo Downloading bootstrap
     sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "$dir/bootstrap.zip"
     sudo unzip -d "$dir/crown" "$dir/bootstrap.zip"
-    mv /crown/bootstrap.dat /.crown
+    mv /crown/bootstrap.dat .crown/bootstrap.dat
     sudo rm -rf "$dir/bootstrap.zip"
     else
     if [ "$choice" -eq 2 ] ; then
