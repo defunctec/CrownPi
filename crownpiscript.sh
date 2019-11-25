@@ -318,7 +318,10 @@
     sudo apt-get install nano -y
     sudo apt-get install p7zip -y
     echo "Done"
-    echo
+# Help scripts
+    echo ===============================================
+    echo Downloading scripts and other useful tools...
+    sudo wget "https://www.dropbox.com/s/gq4vxog7riom739/whatsmyip.sh?dl=0" -O whatsmyip.sh | bash && sudo chmod +x whatsmyip.sh
 # Attempt to create 2GB swap ram
     echo ===============================================
     echo Adding 1GB Swap
