@@ -13,7 +13,6 @@
 # Choose OS
     echo ===============================================
     echo "Are you using Linux or Raspberry Pi?"
-# OS open
     choice=3
     echo "1. Linux"
     echo "2. RPI"
@@ -21,17 +20,16 @@
     while [ $choice -eq 3 ]; do
     read -r choice
     if [ "$choice" -eq 1 ] ; then
-# Update or Install
+# Update or Install?
     echo ===============================================
     echo "Would you like to Update or Install CrownPi?"
-# Install A open
     choice=3
     echo "1. Update"
     echo "2. Install"
     echo -n "1 for Update 2 for Install [1 or 2]? "
     while [ $choice -eq 3 ]; do
     read -r choice
-# Install A1
+# Update 1
     if [ "$choice" -eq 1 ] ; then
     clear
     echo ===============================================
@@ -79,7 +77,7 @@
     fi
 # Maintenance scripts
     echo ===============================================
-    echo Downloading watchdog script...
+    echo Downloading script...
     sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
 # Boot A open
@@ -95,17 +93,17 @@
     if [ "$choice" -eq 1 ] ; then
     echo ===============================================
     echo Downloading bootstrap
-    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "$dir/bootstrap.zip"
-    sudo unzip -d "$dir/.crown" "$dir/bootstrap.zip"
-    sudo rm -rf "$dir/bootstrap.zip"
-    sudo crown-server-install.sh -c -m
+    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "/root/.crown/bootstrap.zip"
+    sudo unzip "/root/.crown/bootstrap.zip"
+    sudo rm -rf "/root/.crown/bootstrap.zip"
+    sudo crown-server-install.sh -c -m -w
     else
 # Boot A2
     if [ "$choice" -eq 2 ] ; then
     echo ===============================================
     echo "Skipping bootstrap"
     echo "Installing Crown client"
-    sudo crown-server-install.sh -c -m
+    sudo crown-server-install.sh -c -m -w
     else
     echo "Please make a choice between Yes or No !"
     echo "1. Yes"
@@ -271,15 +269,19 @@
     sudo apt autoremove -y >/dev/null 2>&1
 # Update Crown
     echo ===============================================
+# Shutdown crownd
+    echo ===============================================
+    echo "Shutting down Crown client"
+    sudo crown-cli stop
     echo "Getting 0.13.4 MN-PoS client..."
-    # Create temporary directory
+# Create temporary directory
     dir=$(mktemp -d)
     if [ -z "$dir" ]; then
-    # Create directory under $HOME if above operation failed
+# Create directory under $HOME if above operation failed
     dir=$HOME/crown-temp
     mkdir -p "$dir"
     fi
-    # Change this later to take latest release version.(UPDATE)
+# Change this later to take latest release version.(UPDATE)
     sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O "$dir/crown.zip"
 # Install Crown client
     echo ===============================================
@@ -288,10 +290,6 @@
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
     sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
     sudo rm -rf "$tmp"
-# Shutdown crownd
-    echo ===============================================
-    echo "Shutting down Crown client"
-    sudo crownd
 # Update ann
     echo "Update finished."
     else
@@ -329,9 +327,10 @@
     sudo /etc/init.d/dphys-swapfile restart
 # Maintenance scripts
     echo ===============================================
-    echo Downloading watchdog script...
+    echo Downloading script...
     sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
+# Boot option
     echo "Would you like to download the Crown bootstrap?"
     choice=3
     echo "1. Yes"
@@ -340,13 +339,15 @@
     while [ $choice -eq 3 ]; do
     read -r choice
     if [ "$choice" -eq 1 ] ; then
+# Boot download
     echo ===============================================
     echo Downloading bootstrap
-    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "$dir/bootstrap.zip"
-    sudo unzip -d "$dir/.crown" "$dir/bootstrap.zip"
-    sudo rm -rf "$dir/bootstrap.zip"
+    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "/root/.crown/bootstrap.zip"
+    sudo unzip "/root/.crown/bootstrap.zip"
+    sudo rm -rf "/root/.crown/bootstrap.zip"
     else
     if [ "$choice" -eq 2 ] ; then
+ # Boot skip
     echo "Skip bootstrap" 
     else
     echo "Please make a choice between Yes or No !"
@@ -360,6 +361,7 @@
     done
     # Download Crown client (Update link with new client)
     # Password change prompt
+# Client download
     echo ===============================================
     echo "Getting 0.13.4 MN-PoS client..."
     # Create temporary directory
@@ -497,7 +499,7 @@
     sudo pwd 
     echo 'testnet=0' | sudo tee -a /root/.crown/crown.conf
     echo 'daemon=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'staking=1' | sudo tee -a /root/.crown/crown.conf
+    echo 'staking=0' | sudo tee -a /root/.crown/crown.conf
     echo 'rpcallowip=127.0.0.1' | sudo tee -a /root/.crown/crown.conf 
     echo 'rpcuser=crowncoinrpc' | sudo tee -a /root/.crown/crown.conf 
     echo 'rpcpassword='"$PW" | sudo tee -a /root/.crown/crown.conf 
