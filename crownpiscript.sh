@@ -330,6 +330,7 @@
     echo Downloading script...
     sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
+    sudo crown-server-install.sh -w
 # Boot option
     echo "Would you like to download the Crown bootstrap?"
     choice=3
@@ -343,8 +344,9 @@
     echo ===============================================
     echo Downloading bootstrap
     sudo mkdir /root/.crown
-    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "/root/.crown/bootstrap.zip"
-    sudo unzip "/root/.crown/bootstrap.zip"
+    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "bootstrap.zip"
+    sudo unzip "bootstrap.zip"
+    sudo mv bootstrap.dat .crown/bootstrap.dat
     sudo rm -rf "/root/.crown/bootstrap.zip"
     else
     if [ "$choice" -eq 2 ] ; then
@@ -501,6 +503,9 @@
     echo 'testnet=0' | sudo tee -a /root/.crown/crown.conf
     echo 'daemon=1' | sudo tee -a /root/.crown/crown.conf 
     echo 'staking=0' | sudo tee -a /root/.crown/crown.conf
+    echo 'addnode=92.60.44.40' | sudo tee -a /root/.crown/crown.conf
+    echo 'addnode=149.248.53.3' | sudo tee -a /root/.crown/crown.conf
+    echo 'addnode=139.180.141.215' | sudo tee -a /root/.crown/crown.conf
     echo 'rpcallowip=127.0.0.1' | sudo tee -a /root/.crown/crown.conf 
     echo 'rpcuser=crowncoinrpc' | sudo tee -a /root/.crown/crown.conf 
     echo 'rpcpassword='"$PW" | sudo tee -a /root/.crown/crown.conf 
@@ -509,7 +514,12 @@
     echo 'externalip='"$IP" | sudo tee -a /root/.crown/crown.conf
     echo 'masterode=1' | sudo tee -a /root/.crown/crown.conf
     echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
- # Notes
+# Crontab entry
+	echo Adding to Crontab
+	echo 'MAILTO=""' | sudo tee -a /var/spool/cron/crontabs/root
+	echo '@reboot /usr/local/bin/crownd' | sudo tee -a /var/spool/cron/crontabs/root
+
+# Notes
     echo ===============================================
     echo Please continue with the guide...
 # Install B close
