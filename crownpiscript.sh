@@ -342,6 +342,7 @@
 # Boot download
     echo ===============================================
     echo Downloading bootstrap
+    sudo mkdir /root/.crown
     sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "/root/.crown/bootstrap.zip"
     sudo unzip "/root/.crown/bootstrap.zip"
     sudo rm -rf "/root/.crown/bootstrap.zip"
