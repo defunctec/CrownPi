@@ -330,7 +330,6 @@
     echo Downloading script...
     sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
     sudo chmod +x /usr/local/bin/crown-server-install.sh
-    sudo crown-server-install.sh -w
 # Boot option
     echo "Would you like to download the Crown bootstrap?"
     choice=3
