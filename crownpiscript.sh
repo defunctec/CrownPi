@@ -405,8 +405,8 @@
 # bash nested if/else
     if [ "$choice" -eq 1 ] ; then 
     echo "You have chosen to install a Zabbix agent"
-    sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
-    sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
+    sudo wget https://repo.zabbix.com/zabbix/4.4/raspbian/pool/main/z/zabbix-release/zabbix-release_4.4-1+buster_all.deb
+    sudo dpkg -i zabbix-release_4.4-1+buster_all.deb
     sudo apt-get update -y
     sudo apt-get install zabbix-agent -y
     echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
