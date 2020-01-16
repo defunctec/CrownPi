@@ -142,11 +142,10 @@
         sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb
         sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb
         sudo apt-get update -y
-		sudo ufw allow 10050
         sudo apt-get install zabbix-agent -y
         echo
         echo Note - Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
-        echo Note - Server=[zabbix server ip] Hostname=[Hostname of Server] EG, Server=192.168.1.10 Hostname=raspberyy1
+        echo Note - Server=[zabbix server ip] Hostname=[Hostname of Server] EG, Server=192.168.1.10 Hostname=raspberry1
         echo
     else
 
@@ -410,7 +409,6 @@
     sudo wget https://repo.zabbix.com/zabbix/4.4/raspbian/pool/main/z/zabbix-release/zabbix-release_4.4-1+buster_all.deb
     sudo dpkg -i zabbix-release_4.4-1+buster_all.deb
     sudo apt-get update -y
-	sudo ufw allow 10050
     sudo apt-get install zabbix-agent -y
     echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
     echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspberry1
@@ -516,10 +514,10 @@
     echo 'masterode=1' | sudo tee -a /root/.crown/crown.conf
     echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
 # Crontab entry
+    echo ===============================================
 	echo Adding to Crontab
 	echo 'MAILTO=""' | sudo tee -a /var/spool/cron/crontabs/root
 	echo '@reboot /usr/local/bin/crownd' | sudo tee -a /var/spool/cron/crontabs/root
-
 # Notes
     echo ===============================================
     echo Please continue with the guide...
